@@ -1,0 +1,8 @@
+
+        Class P {
+            cam() {
+                Foreach (ite In New Y(1, 2, 3) .. Self.fox().a.bar() By MotherBoard::$cap.foo()) {
+                    Self.print(cam);
+                }
+            }
+        }

@@ -1,0 +1,10 @@
+Class C{
+                Constructor(r : Int = 1){
+                    Self.r = r;
+                    Self.area = (r*r);
+                }
+                foo(){
+                    Var arr : Array[Array[Shape,4],5];
+                }
+            }
+        

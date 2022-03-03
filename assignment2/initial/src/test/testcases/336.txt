@@ -1,0 +1,15 @@
+
+        Class Test{
+            testIf() {     
+                If(a>b){
+                    c = Array(Array(1,2),Array(3,4));
+                }
+                If (a<b){ 
+                    c = 2+7;
+                } 
+                Else { 
+                    c = 2/7;
+                }
+            }
+        }
+        

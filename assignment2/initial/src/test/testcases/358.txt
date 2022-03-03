@@ -1,0 +1,5 @@
+Class Program {
+            main() {
+                Self.Call(classY::$a[1][2],classX.a[5]);
+            }
+        }

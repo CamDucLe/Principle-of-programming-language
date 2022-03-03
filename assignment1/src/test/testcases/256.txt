@@ -1,0 +1,10 @@
+Class S {
+            Var S : String = "case normal";
+            Constructor(){ }
+            Constructor(a: String ; b : String){
+                a = !True && !False;
+                n = b;
+            }
+            Destructor(){ }
+
+        }

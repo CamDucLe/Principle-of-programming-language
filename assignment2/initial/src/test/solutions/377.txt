@@ -1,0 +1,1 @@
+Program([ClassDecl(Id(Program),[MethodDecl(Id(main_a),Instance,[],Block([AssignStmt(Id(uh),FieldAccess(Id(u),Id(h))),AssignStmt(Id(oh),FieldAccess(Id(o),Id($h)))]))])])

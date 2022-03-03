@@ -1,0 +1,1 @@
+Program([ClassDecl(Id(Test),[MethodDecl(Id($testForLoop),Static,[],Block([For(Id(i),IntLit(1),IntLit(100),IntLit(2),Block([Break,Continue,AssignStmt(Id(a),Id(b)),Return()])]),Return(Id(exprs))]))])])

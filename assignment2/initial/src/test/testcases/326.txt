@@ -1,0 +1,8 @@
+
+        Class Test{
+            Constructor() { 
+                a[0][1][2]= !b || c;
+                d[1].e = g[1] && ("h" ==. "i");
+            }
+        }
+        

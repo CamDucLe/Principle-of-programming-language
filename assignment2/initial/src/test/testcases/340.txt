@@ -1,0 +1,8 @@
+
+        Class Test{
+            test() {     
+                Val a :Int ; 
+                Var b,c:Bool = False,True;
+            }
+        }
+        

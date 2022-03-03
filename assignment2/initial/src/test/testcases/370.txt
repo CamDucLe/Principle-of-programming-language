@@ -1,0 +1,7 @@
+
+        Class Program {
+            main_a () {
+                classA.a[1][2][3].foo(2/c,b);
+                MotorBike::$ab.foo();
+            }
+        }

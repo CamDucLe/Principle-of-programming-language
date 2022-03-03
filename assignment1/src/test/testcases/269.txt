@@ -1,0 +1,9 @@
+Class S {
+            func() {
+                Foreach (ite1 In 1 .. 100 By 10){
+                   Foreach (ite2 In 1 .. 100 By 11){
+                       a.funcal(Null,3);
+                    }
+                }
+            }
+        }

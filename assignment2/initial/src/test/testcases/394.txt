@@ -1,0 +1,10 @@
+Class P {
+            mama() {
+                Val cam : ClassAC = Null;
+                a = New X(1 + 1, a - 3 * b, 10 / 7 + d);
+                a.a = 10;
+                a.b = -100.00 + a.foo();
+                a.a.b[1] = Array(1, 2, 3);
+                Self.print(a.a);
+            }
+        }

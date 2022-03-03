@@ -1,0 +1,7 @@
+Class C {
+                foo(){
+                    Var a,b:Array[Array[Int,4],4];
+                    a[b[4]+1] = a[0];
+                } 
+            }
+            

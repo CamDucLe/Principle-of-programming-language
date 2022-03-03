@@ -1,0 +1,10 @@
+
+            Class Program {
+                main(){ } 
+                main(){ }
+            }
+            Class Program : P {
+                main(){ }
+                main(){ } 
+            }
+        

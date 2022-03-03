@@ -1,0 +1,8 @@
+
+        Class C{
+                fox(){
+                    Var x : Float = arr[1][2].area;
+                    Var x : Shit = New Shit(classX::$func(),Self.a);
+                }
+        }
+        

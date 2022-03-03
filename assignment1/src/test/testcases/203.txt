@@ -1,0 +1,5 @@
+ Class main {
+            Var $num1 , num2 :  Int;
+            Val num3 , $num4 : Float;
+        }
+        

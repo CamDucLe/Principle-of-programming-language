@@ -1,0 +1,6 @@
+
+        Class Test{
+            Cam(a,b : Int;c:Float){ 
+            }
+        }
+        

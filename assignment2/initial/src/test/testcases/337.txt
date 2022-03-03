@@ -1,0 +1,18 @@
+
+        Class Test{
+            testIf() {     
+                If(a>b){
+                    c = d = 2;
+                    d = 5%7;
+                    e = 4-3;
+                }
+                If (a<b){ 
+                    c = 2+7;
+                    c = -2;
+                } 
+                Else { 
+                    c = -2/7;
+                }
+            }
+        }
+        

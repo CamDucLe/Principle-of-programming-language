@@ -1,0 +1,1 @@
+Program([ClassDecl(Id(Test),[MethodDecl(Id(test),Instance,[],Block([ConstDecl(Id(a),IntType,None),VarDecl(Id(b),ClassType(Id(Bool)),BooleanLit(False)),VarDecl(Id(c),ClassType(Id(Bool)),BooleanLit(True))]))])])

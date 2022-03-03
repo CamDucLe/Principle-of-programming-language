@@ -1,0 +1,13 @@
+Class S {
+            func() {
+                Foreach (ite In 1 .. 100 By 10){
+                    If(k+27 % i == 4){
+                        Return K.attr;
+                    }
+                    Elseif (a ==. b) {
+                        c = c +. "hello";
+                    }
+                }
+            }
+        }
+        

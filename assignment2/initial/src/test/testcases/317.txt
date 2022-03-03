@@ -1,0 +1,5 @@
+
+        Class Test{
+            Val a,$b :Int = 0b11,2*7;
+        }
+        

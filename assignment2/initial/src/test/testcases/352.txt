@@ -1,0 +1,14 @@
+
+        Class Shape {
+            Val $numOfShape: Int = 0;
+            $getNumOfShape() {
+                Return $numOfShape;
+            }
+        }
+        Class Rectangle: Shape {
+            getArea() {
+                Return Self.length * Self.width;
+            }
+        }
+
+        

@@ -1,0 +1,1 @@
+Program([ClassDecl(Id(C),[MethodDecl(Id(fox),Instance,[],Block([VarDecl(Id(x),FloatType,FieldAccess(ArrayCell(Id(arr),[IntLit(1),IntLit(2)]),Id(area))),VarDecl(Id(x),ClassType(Id(Shit)),NewExpr(Id(Shit),[CallExpr(Id(classX),Id($func),[]),FieldAccess(Self(),Id(a))]))]))])])

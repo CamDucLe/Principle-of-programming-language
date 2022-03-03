@@ -1,0 +1,1 @@
+Program([ClassDecl(Id(S),[MethodDecl(Id(fox),Instance,[],Block([AssignStmt(ArrayCell(Id(a),[Id(c),Id(d),CallExpr(Id(k),Id(foo),[])]),IntLit(1))])),AttributeDecl(Instance,VarDecl(Id(l),IntType,IntLit(1))),AttributeDecl(Instance,VarDecl(Id(f),IntType,BinaryOp(-,IntLit(1),IntLit(10))))])])

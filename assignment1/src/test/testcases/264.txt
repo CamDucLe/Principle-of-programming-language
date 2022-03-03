@@ -1,0 +1,13 @@
+Class S {
+            func() {
+                Foreach(i In 1 .. 100 By 1){
+                    If(k+27 % i == 4){
+                        Return New K (3,4);
+                    }
+                    Elseif (a > b) {
+                        c += 1;
+                    }
+                }
+            }
+        }
+        

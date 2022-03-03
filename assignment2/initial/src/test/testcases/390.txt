@@ -1,0 +1,11 @@
+
+        Class Laptop:Electrical{
+                Constructor(weight: Float; useBat:Boolean){
+                    Self.weight = weight/100;
+                    Self.useBattery = useBat;
+                    ElectricalDevice::$devices[ElectricalDevice::$numOfDevices] = Self;
+                    Laptop::$laptops[ElectricalDevice::$numOfDevices] = Self;
+                    ElectricalDevice::$numOfDevices = ElectricalDevice::$numOfDevices+1;
+                }
+        }
+        

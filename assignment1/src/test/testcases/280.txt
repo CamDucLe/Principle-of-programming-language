@@ -1,0 +1,7 @@
+Class S: A, B,C {
+                foo(){
+                    Var s :String = "No multiple inheritance";
+                    Return False;
+                } 
+            }
+        

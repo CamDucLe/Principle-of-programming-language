@@ -1,0 +1,9 @@
+
+        Class Test {
+            main () {
+                Var a : Shape = New Shape();
+                Var r,s : Float;
+                s = r * r * a::$pi;
+            }
+        }
+        

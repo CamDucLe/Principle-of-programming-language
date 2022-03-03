@@ -1,0 +1,10 @@
+
+        Class Test{
+            test() {     
+                If(a>b){
+                    Var a :Int = 5%7; 
+                    e = 4-3;
+                }
+            }
+        }
+        

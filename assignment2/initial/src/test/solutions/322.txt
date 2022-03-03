@@ -1,0 +1,1 @@
+Program([ClassDecl(Id(Test),[MethodDecl(Id(Constructor),Instance,[],Block([VarDecl(Id(b),BoolType,IntLit(1)),VarDecl(Id(c),BoolType,IntLit(0))]))])])

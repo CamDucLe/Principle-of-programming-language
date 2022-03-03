@@ -1,0 +1,8 @@
+ Class A:  B {
+                        set(a,b:Float){
+                            Self.length = a;
+                            Self.width  = b;
+                            a.$foo();
+                        }
+                    }
+                

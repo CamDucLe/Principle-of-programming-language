@@ -1,0 +1,6 @@
+
+        Class Test{
+            Constructor(a,b : Int){ 
+            }
+        }
+        

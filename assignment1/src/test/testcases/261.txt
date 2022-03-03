@@ -1,0 +1,7 @@
+Class S{
+            Var S : String = "case 2 destructor";
+            Constructor(){
+                Constructor(){  };
+            }
+            Destructor(){  }
+        }

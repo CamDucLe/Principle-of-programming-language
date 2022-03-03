@@ -1,0 +1,9 @@
+ Class Rectangle: Shape {
+                        getArea() {
+                            Var b : Array[Int,4];
+                            a = b = 5*3 + 1-1+4;
+                            b[1] = 1;
+                            Return Self.length * Self.width;
+                        }
+                    }
+                

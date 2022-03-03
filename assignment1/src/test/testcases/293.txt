@@ -1,0 +1,6 @@
+Class S{
+                fox(){
+                    a[b[c[d[abc::$wow]]]] = 1;
+                }
+            }
+        

@@ -1,0 +1,16 @@
+
+        Class Program{
+                main(){
+                    Self.print("wow");   
+                }
+                print(s:String){
+                    Return s+."wow";    
+                }
+                Constructor(){
+                    class::$studs = classroom::$studs + 1;
+                }
+                Destructor(){
+                    class::$studs = 0;
+                }
+            }
+        

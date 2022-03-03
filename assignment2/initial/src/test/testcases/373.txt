@@ -1,0 +1,7 @@
+
+        Class Program {
+            main_a () {
+                ClassX.vl(cam);
+                ClassY::$a(27);
+            }
+        }

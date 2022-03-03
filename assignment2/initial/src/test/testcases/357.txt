@@ -1,0 +1,6 @@
+Class Program {
+            Var y:Array[ClassX,5];
+            main() {
+                Var y:Array[ClassX,5];
+            }
+        }

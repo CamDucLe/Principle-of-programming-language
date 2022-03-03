@@ -1,0 +1,7 @@
+
+        Class Test{
+            main() {     
+                If ( d*classz::$f > 1){ }
+            }
+        }
+        

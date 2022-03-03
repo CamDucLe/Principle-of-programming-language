@@ -1,0 +1,9 @@
+Class S {
+            func() {
+                Foreach (ite In 1 .. 100 By 10){
+                    If(("str") ==. a){
+                        Return Null;
+                    }
+                }
+            }
+        }

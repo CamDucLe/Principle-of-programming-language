@@ -1,0 +1,5 @@
+Class Pro {
+                    main() {
+                        Var X,y : Rec =  New Rec(1*2+1,5), New Rec(1*2+1,5);
+                    }
+                }

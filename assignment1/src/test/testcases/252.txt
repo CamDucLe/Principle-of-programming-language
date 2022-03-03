@@ -1,0 +1,33 @@
+Class main {
+            Var b: Array[Int, 273];
+            Val n :Int = 0;
+            Var $n1, $n2, $n3, $n4 :  Int = 123+123,11,22,33;
+            MyFunc(a,b,c : Int ; d : Float){
+               Var n1, n2, n3, n4 :  Int = 100 + 100,123 + 1299, 54 + 55,2;
+               If (False && True && True){
+                   a = b;  
+               }
+               Elseif (True && False){
+                   a = b+4+5;
+               }
+               Elseif (2 && False || True){
+                   a = b+10;
+                }
+               Else{
+                   a = c = b+1*2;
+                   Foreach (i In 1 .. 273 By 3){
+                        If(a >= (b+c) ){
+                            Continue;
+                        }
+                        Elseif(a < (b+c) ){
+                            a = b - 1; 
+                            Break;
+                        }
+                        Else {
+                            a = b * 2;
+                            Return c*1/2+1+3;
+                        }
+                    } 
+               }
+            }
+        }

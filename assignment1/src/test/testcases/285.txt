@@ -1,0 +1,7 @@
+Class C{
+                fox(){
+                    Var arr : Array[Array[Shape,1],2];
+                    Var x : Float = Array[1,2,3];
+                }
+            }
+        

@@ -1,0 +1,7 @@
+
+        Class Program {
+            main_a () {
+                uh = u.h;
+                oh = o::$h;
+            }
+        }

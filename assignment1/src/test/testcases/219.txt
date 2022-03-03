@@ -1,0 +1,10 @@
+ Class ProgramCC {
+                        Var a,b : Int;
+                        Clear(){ 
+                            a=1------1+1--1;
+                            Return notThing;
+                        }
+                        Destructor(){  
+                            Self.callClear(3*3*3,3);  
+                        }
+                    }

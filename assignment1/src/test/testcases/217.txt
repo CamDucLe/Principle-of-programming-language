@@ -1,0 +1,12 @@
+ Class ProgramCC {
+                        Var a,b : Int;
+                        Constructor (){ 
+                            Self.a = Self.b = 2 + 2;
+                        }
+                        Clear(){ 
+                            Return notThing;
+                        }
+                        Destructor(){  
+                            Self.callClear();  
+                        }
+                    }

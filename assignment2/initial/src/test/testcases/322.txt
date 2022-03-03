@@ -1,0 +1,7 @@
+
+        Class Test{
+            Constructor() { 
+                Var b,c:Boolean = 1,0;
+            }
+        }
+        

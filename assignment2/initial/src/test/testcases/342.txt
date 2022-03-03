@@ -1,0 +1,8 @@
+
+        Class Test{
+            test() {     
+                Val a : Float = Null;
+                Var a : ClassX = Null; 
+            }
+        }
+        

@@ -1,0 +1,8 @@
+Class Program {
+            Var y:ClassX;
+            Val $y:ClassY;
+            Val y:ClassZ=Null;
+            main() {
+                Var x:ClassY;
+            }
+        }

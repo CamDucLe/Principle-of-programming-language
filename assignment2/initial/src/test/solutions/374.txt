@@ -1,0 +1,1 @@
+Program([ClassDecl(Id(Program),[MethodDecl(Id(main_a),Instance,[],Block([Call(FieldAccess(Id(a),Id(b)),Id($c),[Id(cam)])]))])])

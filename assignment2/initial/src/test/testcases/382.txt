@@ -1,0 +1,7 @@
+Class S: A{
+                foo(){
+                    class.a(a&&b||(!c));
+                    Return False;
+                } 
+            }
+        

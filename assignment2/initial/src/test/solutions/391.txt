@@ -1,0 +1,1 @@
+Program([ClassDecl(Id(Cam),[MethodDecl(Id(addStud),Instance,[param(Id(newStu),ClassType(Id(Student)))],Block([AssignStmt(ArrayCell(FieldAccess(Id(class),Id($studentList)),[FieldAccess(Id(Classroom),Id($numOfStudents))]),Id(newStu))]))])])

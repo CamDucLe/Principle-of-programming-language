@@ -1,0 +1,10 @@
+Class C {
+                fox(){
+                    Var a : Int = a.b.c.d(C.fox());
+                    a = x.Y() * (-1.2e4);
+                    b = 0B100110101;
+                    c = 0x12AC001;
+                    well.print(done);
+                } 
+            }
+            

@@ -1,0 +1,10 @@
+Class C {
+                foo(){
+                    a = x.Y(0b11*9);
+                    b = 0B10 + 012;
+                    If (this != Null) {
+                        sys.out.print(node.data +. " cam");
+                    }
+                } 
+            }
+            

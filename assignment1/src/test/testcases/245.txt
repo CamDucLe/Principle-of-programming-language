@@ -1,0 +1,6 @@
+Class Pro {
+                    main() {
+                        Val X,y : Rec =  New Rec(1*2+1,5), New Rec(1*2+1,5);
+                        A=s = New Y();
+                    }
+                }

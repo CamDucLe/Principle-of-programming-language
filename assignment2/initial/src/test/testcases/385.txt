@@ -1,0 +1,13 @@
+
+        Class C{
+                fox(){
+                    Foreach (i In 0 .. arr[j][j] By 1){
+                        Foreach (j In 0 .. 2-2-1 ){
+                            If ((j == 4)){
+                                 Var shape0 : Shape = New Shape(i);
+                            }
+                        }
+                    }
+                }
+        }
+        

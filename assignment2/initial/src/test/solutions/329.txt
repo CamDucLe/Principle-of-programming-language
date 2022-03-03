@@ -1,0 +1,1 @@
+Program([ClassDecl(Id(Test),[MethodDecl(Id(testForLoop),Instance,[],Block([For(Id(i),IntLit(1),IntLit(100),IntLit(2),Block([For(Id(x),IntLit(3),IntLit(27),IntLit(1),Block([AssignStmt(Id(x),[IntLit(3),IntLit(17)])])])])])]))])])

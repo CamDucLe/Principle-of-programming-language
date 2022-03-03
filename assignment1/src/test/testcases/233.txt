@@ -1,0 +1,8 @@
+  Class Arr{
+            main (){
+                Var a: Array[Array[Int,4],2] = Array(
+                    Array(1,1), 
+                    Array(2,7,3) 
+                );
+            }
+        }

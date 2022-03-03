@@ -1,0 +1,10 @@
+
+        Class Test{
+            $testMethodInvocate() { 
+                Foreach (i In -5 .. 100 By 5) {
+                    class.func1(27,"cam",True);
+                    Self.func2();
+                }
+            }
+        }
+        

@@ -1,0 +1,1 @@
+Program([ClassDecl(Id(Program),[MethodDecl(Id(main_a),Instance,[],Block([Call(ArrayCell(FieldAccess(Id(classA),Id(a)),[IntLit(1),IntLit(2),IntLit(3)]),Id(foo),[BinaryOp(/,IntLit(2),Id(c)),Id(b)]),Call(FieldAccess(Id(MotorBike),Id($ab)),Id(foo),[])]))])])

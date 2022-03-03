@@ -1,0 +1,9 @@
+
+        Class Test{
+            Constructor() { 
+                a[0][1][2]=1;
+                Self.a=a[1];
+                ClassA.a[0] = ClassA::$b[1] = 27 ;
+            }
+        }
+        

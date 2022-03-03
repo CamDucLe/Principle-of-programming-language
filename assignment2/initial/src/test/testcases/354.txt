@@ -1,0 +1,6 @@
+Class Program {
+            main() {
+                Self.b.method(2*3);
+                ClassX::$b.method(param);
+            }
+        }

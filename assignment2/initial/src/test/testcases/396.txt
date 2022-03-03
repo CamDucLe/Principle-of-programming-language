@@ -1,0 +1,10 @@
+Class P {
+            mama() {
+                If (True){ 
+                    {
+                        a1::$a2.a[3][4] = Array(Array(2,7),Array(0,3));
+                        b =( b1.fun().b2.fun())::$fun2();
+                    }
+                }
+            }
+        }

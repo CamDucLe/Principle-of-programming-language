@@ -1,0 +1,8 @@
+Class A:B{
+                fox(){
+                    a.a.a[0][1].func(a,b);
+                    (a.a[1][2][3]).foo();
+                    (MotorBike::$a.a[1][2]).foo();        
+                }
+            }
+        

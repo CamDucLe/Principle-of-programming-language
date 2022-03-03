@@ -1,0 +1,6 @@
+ Class Rectangle: CC {
+                        function(){ Return somthing; }
+                    }
+                    Class Program {
+                        doSomeThing(a:Int){ a = 4+4; }
+                    }

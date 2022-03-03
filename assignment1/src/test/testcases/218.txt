@@ -1,0 +1,10 @@
+ Class ProgramCC {
+                        Var a,b : Int;
+                        Clear(){ 
+                            wrongClear(){ };
+                            Return notThing;
+                        }
+                        Destructor(){  
+                            Self.callClear();  
+                        }
+                    }

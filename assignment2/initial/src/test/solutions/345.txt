@@ -1,0 +1,1 @@
+Program([ClassDecl(Id(Test),[MethodDecl(Id(main),Instance,[],Block([If(BinaryOp(>,BinaryOp(+,Id(a),FieldAccess(Id(b),Id(member))),CallExpr(Id(classx),Id($fun),[])),Block([]))]))])])

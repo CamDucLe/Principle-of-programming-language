@@ -1,0 +1,10 @@
+
+        Class Test{
+            method1() { 
+                Var b:String = "string";
+            }
+            $method2(){
+                Val c:Int = 0b11 + 01;
+            }
+        }
+        

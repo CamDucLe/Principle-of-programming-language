@@ -1,0 +1,18 @@
+Class C{
+                Constructor(ra : Int){
+                    Self.ra = ra;
+                }
+                fox(){
+                    Var arr : Array[Array[Shape,1],2];
+                    Foreach (i In 0 .. (2*3)-1 By 1){
+                        Foreach (j In 0 .. 2-2-1 ){
+                            Var shape0 : Shape = New Shape(i);
+                            arr[j][j] =  shape0;
+                            If ((j == 4)){
+                                Return "bruh";
+                            }
+                        }
+                    }
+                }
+            }
+        

@@ -1,0 +1,10 @@
+
+        Class Test{
+            testIf() { 
+                If(a>b){ }
+                
+                If (a<b){ } 
+                Else { }
+            }
+        }
+        

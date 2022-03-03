@@ -1,0 +1,9 @@
+ Class ProgramCC {
+                        Var a,b : Int;
+                        Constructor (){ 
+                            Self.a = Self.b = 2 + 2;
+                        }
+                        Constructor( c:Int ){  
+                            Self.a = Self.b = c;  
+                        }
+                    }

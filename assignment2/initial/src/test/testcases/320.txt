@@ -1,0 +1,9 @@
+
+        Class Test{
+            Var a : ClassType = New ClassType();
+            Constructor() { 
+                Var b,c:Int;
+                Val d:Float;
+            }
+        }
+        

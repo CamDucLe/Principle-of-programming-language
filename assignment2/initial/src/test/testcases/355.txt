@@ -1,0 +1,6 @@
+Class Program {
+            main() {
+                Self.method(Self.b);
+                ClassX::$b.method(ClassY::$e);
+            }
+        }

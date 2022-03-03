@@ -1,0 +1,7 @@
+Class S {
+                fox(){
+                    a[c][d][k.foo()] = 1;
+                }
+                Var l,f : Int = 1 , 1 - 2;
+            }
+        

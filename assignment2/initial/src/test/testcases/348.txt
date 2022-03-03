@@ -1,0 +1,7 @@
+
+        Class Test{
+            main() {     
+                Self.main(ClassX.func(1)+ClassY::$var);
+            }
+        }
+        

@@ -1,0 +1,6 @@
+Class C{
+            Var _9c2, $_: l_;
+            foo(){
+                Val a,b:ClassX;
+            }
+        }

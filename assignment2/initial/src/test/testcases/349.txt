@@ -1,0 +1,7 @@
+
+        Class Test{
+            main() {     
+                Self.m(ClassX.func(Self.a)+ClassY::$var(a||True));
+            }
+        }
+        

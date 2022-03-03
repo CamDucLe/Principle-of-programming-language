@@ -1,0 +1,6 @@
+ Class main {
+            Val  true :  Boolean = True;
+            Var false : Boolean = False;
+            Val True : Boolean;
+        }
+        

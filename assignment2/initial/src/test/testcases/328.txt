@@ -1,0 +1,12 @@
+
+        Class Test{
+            Destructor() { 
+                Foreach (i In 1 .. 100 By 2) {
+                    i = Array(1,2,3);
+                }
+                Foreach (x In 3 .. 27 ) {
+                    x = Array("a","b");
+                }   
+            }
+        }
+        

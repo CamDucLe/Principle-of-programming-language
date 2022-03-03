@@ -1,0 +1,8 @@
+
+        Class Test{
+            Constructor() { 
+                a[5%3-1][1+2]= b/c;
+                $d[1*2*7].e = ("h" +. "i");
+            }
+        }
+        

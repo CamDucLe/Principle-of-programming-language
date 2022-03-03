@@ -1,0 +1,18 @@
+
+        Class Lap{
+                Var $laptops: Array[Boolean, 100];
+                $Refresh(){
+                    Foreach(i In (ElectricalDevice::$numOfDevices*100)/100 + 1 .. 100-100+35%34 By -1){
+                        (laptops[i]).refresh();
+                    }
+                }
+                start(){
+                    Laptop::$nothing();
+                    Return useBattery;
+                }
+                stop(){
+                    Self.nothing();
+                    Return -useBattery;
+                }
+        }
+        

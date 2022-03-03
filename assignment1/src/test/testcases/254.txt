@@ -1,0 +1,16 @@
+
+        Class Shape {
+            Var $numShape: Int = 0;
+            Val pi:Float = 3.14;
+            $getNumShape() {
+                Return $numShape;
+            }
+        }
+        Class Test {
+            main () {
+                Var a : Shape = New Shape();
+                Var r,s : Float;
+                s = r * r * a.pi;
+            }
+        }
+        

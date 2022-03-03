@@ -1,0 +1,6 @@
+
+        Class Program {
+            main_a () {
+                a::$b.c(cam);
+            }
+        }

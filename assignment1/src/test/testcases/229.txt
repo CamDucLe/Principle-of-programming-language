@@ -1,0 +1,7 @@
+ Class Rectangle: Shape {
+                        getArea() {
+                            Val a,b : Shape = New Shape(3,4), New Shape(2) ;
+                            Return Self.length * Self.width;
+                        }
+                    }
+                

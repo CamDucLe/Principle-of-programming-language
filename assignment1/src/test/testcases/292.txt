@@ -1,0 +1,6 @@
+Class S{
+                fox(){
+                    a[b[c[d[Self.wow]]]] = 1;
+                }
+            }
+        

@@ -1,0 +1,12 @@
+ Class Rectangle: Shape {
+                        getArea() {
+                            Val a : Shape = New Shape(3,4);  
+                            b = c = d = e = 5 * 3 + 12 - 19 + 4;
+                            Return Self.length * Self.width;
+                        }
+                        set(a,b:Float){
+                            Self.length = a;
+                            Self.width  = b;
+                        }
+                    }
+                

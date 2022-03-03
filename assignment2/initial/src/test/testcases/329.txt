@@ -1,0 +1,11 @@
+
+        Class Test{
+            testForLoop() { 
+                Foreach (i In 1 .. 100 By 2) {
+                    Foreach (x In 3 .. 27 ) {
+                        x = Array(0B11,0X11);
+                    }   
+                }
+            }
+        }
+        

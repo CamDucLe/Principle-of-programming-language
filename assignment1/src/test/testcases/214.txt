@@ -1,0 +1,9 @@
+ Class Rectangle: CC {
+                        function(){ Return simpleExpresion; }
+                    }
+                    Class Program {
+                        Var a,b : Int;
+                        constructor( c:Int ){  
+                            Self.a = Self.b = c;  
+                        }
+                    }

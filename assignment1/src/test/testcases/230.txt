@@ -1,0 +1,7 @@
+ Class Rectangle: Shape {
+                        getArea() {
+                            Var $a,$s : Shape = New Shape(), New Shape(1) ;
+                            Return Self.length * Self.width;
+                        }
+                    }
+                

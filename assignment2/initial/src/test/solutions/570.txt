@@ -1,0 +1,2 @@
+Program([ClassDecl(Id(Program),[MethodDecl(Id(main_a),Instance,[],Block([
+    FieldAccess(Self(),CallExpr(Id(a),Id(putIntLn),[IntLit(4)]))]))])])

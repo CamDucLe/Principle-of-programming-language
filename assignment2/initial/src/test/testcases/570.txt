@@ -1,0 +1,6 @@
+
+        Class Program {
+            main_a () {
+                Self.a.putIntLn(4);
+            }
+        }

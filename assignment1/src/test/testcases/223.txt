@@ -1,0 +1,9 @@
+ Class Rec : Shape {
+                        getArea() {
+                            Return Self.length * Self.width;
+                        }
+                        func(){
+                            Return New X(111111111111111111);
+                        }
+                    }
+                

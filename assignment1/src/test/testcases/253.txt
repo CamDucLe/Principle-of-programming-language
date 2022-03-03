@@ -1,0 +1,16 @@
+
+        Class Shape {
+            Val $numShape: Int = 0;
+            $getNumShape() {
+                Return $numShape;
+            }
+        }
+        Class Test {
+            main () {
+                Out.printInt(Shape::$numShape);
+                Var r,s : Float;
+                s = r * r * 3.14;
+                a[0] = s;
+            }
+        }
+        

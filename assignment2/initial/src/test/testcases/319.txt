@@ -1,0 +1,6 @@
+
+        Class Test{
+            Var a : ClassType = New ClassType(2,7);
+            Constructor() { }
+        }
+        

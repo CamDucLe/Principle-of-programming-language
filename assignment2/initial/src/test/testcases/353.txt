@@ -1,0 +1,13 @@
+
+        Class Shape {
+            Val $numOfShape: Int = 0;
+            $getNumOfShape() {
+                Return $numOfShape;
+            }
+        }
+        Class Program {
+            main() {
+                Out.printInt(Shape::$numOfShape);
+            }
+        }
+        

@@ -1,0 +1,8 @@
+
+        Class Test{
+            Var $b,c:Int;
+            test() {     
+                Val a :Int = 5%7; 
+            }
+        }
+        

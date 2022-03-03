@@ -1,0 +1,8 @@
+
+        Class Test{
+            main() {     
+                Foreach (i In Self.a( b.c( d.e() ) ) .. x::$y By 5 ){
+                }
+            }
+        }
+        

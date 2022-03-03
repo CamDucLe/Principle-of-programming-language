@@ -1,0 +1,24 @@
+Class C: Cam {
+                foo(){
+                    If (True){
+                        If (0==0 && (0!=1) || (1 < (2*(3+4))) || !(4)){
+                            a=(5+ (4*8) + 10);
+                            If (b == True){
+                                If (True){
+                                    If (True){
+                                        b = False;
+                                    }
+                                    Else{
+                                        If (True){
+                                            b = False;
+                                            Return True;
+                                        }
+                                    }
+                                }
+                            }  
+                        }
+                    }
+                    Return False;
+                } 
+            }
+        

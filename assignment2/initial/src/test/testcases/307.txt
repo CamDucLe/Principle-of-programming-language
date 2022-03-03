@@ -1,0 +1,6 @@
+
+        Class Test{
+            instance_method(){ }
+            $static_method(){ }
+        }
+        

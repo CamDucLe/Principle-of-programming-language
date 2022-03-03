@@ -1,0 +1,5 @@
+Class Program1 {
+            main() {
+                id = classZ.Call().text();
+            }
+        }

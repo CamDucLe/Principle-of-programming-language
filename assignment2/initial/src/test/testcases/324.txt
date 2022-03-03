@@ -1,0 +1,9 @@
+
+        Class Test{
+            Constructor() { 
+                a=1;
+                Self.a=2-7;
+                ClassA.a = ClassA::$b = d = 27 ;
+            }
+        }
+        

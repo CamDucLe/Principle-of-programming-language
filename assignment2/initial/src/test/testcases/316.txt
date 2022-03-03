@@ -1,0 +1,5 @@
+
+        Class Test{
+            Var a,$b :Int = 0x12,2+3;
+        }
+        

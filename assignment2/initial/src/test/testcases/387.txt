@@ -1,0 +1,11 @@
+Class Program{
+                main(){
+                If( a * 1 + 2 == 9 ){
+                    b = a = arr[1+2+3] = Self.pi ; 
+                }
+                Else{
+                    a = a * 3 / 27/ 2001  + 0B11; 
+                }
+            }
+        }
+        

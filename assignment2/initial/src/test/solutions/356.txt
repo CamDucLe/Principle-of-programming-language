@@ -1,0 +1,1 @@
+Program([ClassDecl(Id(Program),[AttributeDecl(Instance,VarDecl(Id(y),ClassType(Id(ClassX)),NullLiteral())),AttributeDecl(Static,ConstDecl(Id($y),ClassType(Id(ClassY)),NullLiteral())),AttributeDecl(Instance,ConstDecl(Id(y),ClassType(Id(ClassZ)),NullLiteral())),MethodDecl(Id(main),Static,[],Block([VarDecl(Id(x),ClassType(Id(ClassY)),NullLiteral())]))])])

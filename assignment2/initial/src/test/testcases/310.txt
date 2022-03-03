@@ -1,0 +1,6 @@
+
+        Class Test{
+            Cam(a:Int;b:Float;c,d:String;e,f,g:Boolean){ 
+            }
+        }
+        

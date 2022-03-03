@@ -1,0 +1,4 @@
+ Class main {
+            Val  true :  Boolean = True;
+
+        

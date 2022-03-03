@@ -1,0 +1,6 @@
+Class C{
+                foo(){
+                    Var arr : Array[Array[Shape,4],5];
+                }
+            }
+        

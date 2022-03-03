@@ -1,0 +1,7 @@
+Class P {
+            mama() {
+                a = b[1]::$b2.fun();
+                a = a1.a2.a3.fun(P.p1.p2);
+                a = (a1::$a2.a3)::$a4;
+            }
+        }

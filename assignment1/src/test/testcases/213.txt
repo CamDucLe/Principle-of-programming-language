@@ -1,0 +1,9 @@
+ Class Rectangle: CC {
+                        function(){ Return simpleExpresion; }
+                    }
+                    Class Program {
+                        doSomeThing(a:Int){ 
+                            a = 4+4; 
+                            Return complexExpression * a + 5/6;
+                        }
+                    }

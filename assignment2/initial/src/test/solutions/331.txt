@@ -1,0 +1,1 @@
+Program([ClassDecl(Id(Test),[MethodDecl(Id($testMethodInvocate),Static,[],Block([For(Id(i),UnaryOp(-,IntLit(5)),IntLit(100),IntLit(5),Block([Call(Id(class),Id(func1),[IntLit(27),StringLit(cam),BooleanLit(True)]),Call(Self(),Id(func2),[])])])]))])])

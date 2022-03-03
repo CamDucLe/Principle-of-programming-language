@@ -1,0 +1,7 @@
+
+        Class Cam{
+                addStud(newStu: Student){
+                    class::$studentList[Classroom::$numOfStudents] = newStu;
+                } 
+            }
+        

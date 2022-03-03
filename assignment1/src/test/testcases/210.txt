@@ -1,0 +1,6 @@
+ Class Rectangle: Shape {
+                        function(){  }
+                    }
+                    Class Program {
+                        doSomeThing(a:Int){ }
+                    }

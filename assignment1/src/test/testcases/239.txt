@@ -1,0 +1,6 @@
+  Class Arr{
+            main (){
+                Var a : Shape = New Shape();
+                a::$width = 5;
+            }
+        }

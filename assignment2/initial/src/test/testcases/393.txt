@@ -1,0 +1,11 @@
+
+        Class Program{
+                main(){
+                    Self.print("wow");
+                    { 
+                        Return New classX((Self.b[1]).a);
+                        Return New classY((Self.b[1]).fun());
+                    } { }  
+                }
+            }
+        

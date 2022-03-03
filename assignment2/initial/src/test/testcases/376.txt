@@ -1,0 +1,6 @@
+
+        Class Program {
+            main () {
+                uh = Self.a.b.c.d;
+            }
+        }

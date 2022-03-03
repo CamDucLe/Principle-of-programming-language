@@ -1,0 +1,9 @@
+Class C {
+                foo(){
+                    Var a,b,c : Int;
+                    a = x.Y();
+                    b = 0B100011101;
+                    c = 0x12AC001;
+                } 
+            }
+            

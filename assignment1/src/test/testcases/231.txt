@@ -1,0 +1,11 @@
+ Class main {
+            Var $num1, $num2, $num3, $num4 :  Int;
+            MyFunc(a,b : Int ; c : Float){
+                Var num1, num2, num3, num4 :  Int = 123, 100 + 100,123 + 1299, 54 + 55;
+                a[0] = Self.a; 
+                If (2 > a[0] && (Self.num1 <= 1)) {
+                   a = 1;
+                }
+            }
+        }
+        

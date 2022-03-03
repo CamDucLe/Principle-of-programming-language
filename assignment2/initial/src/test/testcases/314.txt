@@ -1,0 +1,5 @@
+
+        Class Test {
+            Var a,$b:Float;
+        }
+        

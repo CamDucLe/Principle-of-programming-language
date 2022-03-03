@@ -1,0 +1,1 @@
+Program([ClassDecl(Id(Test),[MethodDecl(Id(main),Instance,[],Block([For(Id(i),CallExpr(Self(),Id(a),[CallExpr(Id(b),Id(c),[CallExpr(Id(d),Id(e),[])])]),FieldAccess(Id(x),Id($y)),IntLit(5),Block([])])]))])])

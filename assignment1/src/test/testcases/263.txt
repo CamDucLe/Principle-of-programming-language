@@ -1,0 +1,15 @@
+
+        Class S {
+            func() {
+                Foreach(i In 1 .. 100 By 1){
+                    If(k % i == 1){
+                        Break;
+                    }
+                    Else{
+                        c = c + 1;
+                    }
+                }
+                Return New X();
+            }
+        }
+        

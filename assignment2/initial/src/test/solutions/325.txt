@@ -1,0 +1,1 @@
+Program([ClassDecl(Id(Test),[MethodDecl(Id(Constructor),Instance,[],Block([AssignStmt(ArrayCell(Id(a),[IntLit(0),IntLit(1),IntLit(2)]),IntLit(1)),AssignStmt(FieldAccess(Self(),Id(a)),ArrayCell(Id(a),[IntLit(1)])),AssignStmt(AssignStmt(ArrayCell(FieldAccess(Id(ClassA),Id(a)),[IntLit(0)]),ArrayCell(FieldAccess(Id(ClassA),Id($b)),[IntLit(1)])),IntLit(27))]))])])

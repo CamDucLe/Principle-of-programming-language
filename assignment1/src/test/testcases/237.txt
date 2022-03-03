@@ -1,0 +1,7 @@
+  Class Arr{
+            main (){
+                Var a: Array[Array[Float,4],2] = Array(
+                    Array(4.0,2.73), Array(.1e1) 
+                );
+            }
+        }

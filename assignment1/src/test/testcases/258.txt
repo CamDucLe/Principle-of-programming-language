@@ -1,0 +1,5 @@
+Class S{
+            Var S : String = "case destructor has param";
+            Constructor(){ }
+            Destructor(a,b : Float){}
+        }

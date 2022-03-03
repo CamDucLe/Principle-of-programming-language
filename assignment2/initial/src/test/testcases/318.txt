@@ -1,0 +1,6 @@
+
+        Class Test{
+            Var a:Array[Boolean,5] = Array(1,1,1,1,0);
+            Destructor(){ }
+        }
+        

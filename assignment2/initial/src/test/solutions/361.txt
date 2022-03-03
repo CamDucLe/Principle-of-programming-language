@@ -1,0 +1,1 @@
+Program([ClassDecl(Id(Program1),[MethodDecl(Id(main),Instance,[],Block([Call(CallExpr(Id(classZ),Id(Call),[FieldAccess(CallExpr(Id(ClassX),Id($y),[]),Id(t))]),Id(text),[])]))])])

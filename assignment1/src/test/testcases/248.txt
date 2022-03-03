@@ -1,0 +1,8 @@
+ Class Rectangle: Shape {
+                        getArea() {
+                            Var a : Shape = New Shape(Array("string"), Array(1));
+                            d[0X] = 1;
+                            Return a.length * Self.width;
+                        }
+                    }
+                
