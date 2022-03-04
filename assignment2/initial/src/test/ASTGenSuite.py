@@ -516,7 +516,7 @@ class ASTGenSuite(unittest.TestCase):
             }
         }
         """
-        expect = "Program([ClassDecl(Id(Test),[MethodDecl(Id(test),Instance,[],Block([ConstDecl(Id(a),ClassType(Id(ClassX)),NullLiteral()),VarDecl(Id(a),ClassType(Id(ClassX)),NewExpr(Id(ClassX),[]))]))])])"
+        expect = "Program([ClassDecl(Id(Test),[MethodDecl(Id(test),Instance,[],Block([ConstDecl(Id(a),ClassType(Id(ClassX)),None),VarDecl(Id(a),ClassType(Id(ClassX)),NewExpr(Id(ClassX),[]))]))])])"
         self.assertTrue(TestAST.test(input,expect,343))
     
     
@@ -676,7 +676,7 @@ class ASTGenSuite(unittest.TestCase):
                 Var x:ClassY;
             }
         }"""
-        expect = "Program([ClassDecl(Id(Program),[AttributeDecl(Instance,VarDecl(Id(y),ClassType(Id(ClassX)),NullLiteral())),AttributeDecl(Static,ConstDecl(Id($y),ClassType(Id(ClassY)),NullLiteral())),AttributeDecl(Instance,ConstDecl(Id(y),ClassType(Id(ClassZ)),NullLiteral())),MethodDecl(Id(main),Static,[],Block([VarDecl(Id(x),ClassType(Id(ClassY)),NullLiteral())]))])])"
+        expect = "Program([ClassDecl(Id(Program),[AttributeDecl(Instance,VarDecl(Id(y),ClassType(Id(ClassX)),NullLiteral())),AttributeDecl(Static,ConstDecl(Id($y),ClassType(Id(ClassY)),None)),AttributeDecl(Instance,ConstDecl(Id(y),ClassType(Id(ClassZ)),NullLiteral())),MethodDecl(Id(main),Static,[],Block([VarDecl(Id(x),ClassType(Id(ClassY)),NullLiteral())]))])])"
         self.assertTrue(TestAST.test(input, expect, 356))
     
     def test57(self):
@@ -825,7 +825,7 @@ class ASTGenSuite(unittest.TestCase):
                 Val a,b:ClassX;
             }
         }"""
-        expect = "Program([ClassDecl(Id(C),[AttributeDecl(Instance,VarDecl(Id(_9c2),ClassType(Id(l_)),NullLiteral())),AttributeDecl(Static,VarDecl(Id($_),ClassType(Id(l_)),NullLiteral())),MethodDecl(Id(foo),Instance,[],Block([ConstDecl(Id(a),ClassType(Id(ClassX)),NullLiteral()),ConstDecl(Id(b),ClassType(Id(ClassX)),NullLiteral())]))])])"
+        expect = "Program([ClassDecl(Id(C),[AttributeDecl(Instance,VarDecl(Id(_9c2),ClassType(Id(l_)),NullLiteral())),AttributeDecl(Static,VarDecl(Id($_),ClassType(Id(l_)),NullLiteral())),MethodDecl(Id(foo),Instance,[],Block([ConstDecl(Id(a),ClassType(Id(ClassX)),None),ConstDecl(Id(b),ClassType(Id(ClassX)),None)]))])])"
         self.assertTrue(TestAST.test(input, expect, 371))
     
     def test72(self):
@@ -1109,7 +1109,7 @@ class ASTGenSuite(unittest.TestCase):
                 }
             }
         """
-        expect = "Program([ClassDecl(Id(Program),[MethodDecl(Id(main),Static,[],Block([Call(Self(),Id(print),[StringLit(wow)]),Block([Return(NewExpr(Id(classX),[FieldAccess(ArrayCell(FieldAccess(Self(),Id(b)),[IntLit(1)]),Id(a))])),Return(NewExpr(Id(classY),[CallExpr(ArrayCell(FieldAccess(Self(),Id(b)),[IntLit(1)]),Id(fun),[])]))]),Block([])]))])])"
+        expect = "Program([ClassDecl(Id(Program),[MethodDecl(Id(main),Instance,[],Block([Call(Self(),Id(print),[StringLit(wow)]),Block([Return(NewExpr(Id(classX),[FieldAccess(ArrayCell(FieldAccess(Self(),Id(b)),[IntLit(1)]),Id(a))])),Return(NewExpr(Id(classY),[CallExpr(ArrayCell(FieldAccess(Self(),Id(b)),[IntLit(1)]),Id(fun),[])]))]),Block([])]))])])"
         self.assertTrue(TestAST.test(input, expect, 393))
     
     def test94(self):
@@ -1190,6 +1190,26 @@ class ASTGenSuite(unittest.TestCase):
             """
         expect = "Program([ClassDecl(Id(C),[MethodDecl(Id(fox),Instance,[],Block([VarDecl(Id(a),IntType,CallExpr(FieldAccess(FieldAccess(Id(a),Id(b)),Id(c)),Id(d),[CallExpr(Id(C),Id(fox),[])])),AssignStmt(Id(a),BinaryOp(*,CallExpr(Id(x),Id(Y),[]),UnaryOp(-,FloatLit(12000.0)))),AssignStmt(Id(b),IntLit(309)),AssignStmt(Id(c),IntLit(19578881)),Call(Id(well),Id(print),[Id(done)])]))])])"
         self.assertTrue(TestAST.test(input, expect, 399))
+    
+    # def test100(self):
+    #     input = """Class Program {
+    #             main(){
+    #                 Return 1;
+    #             } 
+    #             main(){
+    #                 If (True){
+    #                     Return 1;
+    #                 }
+    #             } 
+    #             main(){
+    #                 Return ;
+    #             } 
+    #             main(){
+    #             } 
+    #         }
+    #         """
+    #     expect = "Program([ClassDecl(Id(Program),[MethodDecl(Id(main),Instance,[],Block([Return(IntLit(1))])),MethodDecl(Id(main),Instance,[],Block([If(BooleanLit(True),Block([Return(IntLit(1))]))])),MethodDecl(Id(main),Static,[],Block([Return()])),MethodDecl(Id(main),Static,[],Block([]))])])"
+    #     self.assertTrue(TestAST.test(input, expect, 400))
    
     
     

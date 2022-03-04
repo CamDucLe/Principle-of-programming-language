@@ -1,1 +1,1 @@
-Program([ClassDecl(Id(Program),[MethodDecl(Id(main),Static,[],Block([])),MethodDecl(Id(main),Static,[],Block([]))]),ClassDecl(Id(Program),Id(P),[MethodDecl(Id(main),Instance,[],Block([])),MethodDecl(Id(main),Instance,[],Block([]))])])
+Program([ClassDecl(Id(Program),[MethodDecl(Id(main),Instance,[],Block([Return(IntLit(1))])),MethodDecl(Id(main),Instance,[],Block([If(BooleanLit(True),Block([Return(IntLit(1))]))])),MethodDecl(Id(main),Static,[],Block([Return()])),MethodDecl(Id(main),Static,[],Block([]))])])

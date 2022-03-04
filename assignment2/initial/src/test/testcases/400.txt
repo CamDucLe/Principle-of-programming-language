@@ -1,10 +1,16 @@
-
-            Class Program {
-                main(){ } 
-                main(){ }
+Class Program {
+                main(){
+                    Return 1;
+                } 
+                main(){
+                    If (True){
+                        Return 1;
+                    }
+                } 
+                main(){
+                    Return ;
+                } 
+                main(){
+                } 
             }
-            Class Program : P {
-                main(){ }
-                main(){ } 
-            }
-        
+            

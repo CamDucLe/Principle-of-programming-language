@@ -7,6 +7,7 @@ from AST import *
 
 class ASTGeneration(D96Visitor):
     prog_flag = 0
+    ret_flag  = 0
     # Visit a parse tree produced by D96Parser#program.
     # program : (class_decl)+ EOF
     # checked
@@ -66,10 +67,7 @@ class ASTGeneration(D96Visitor):
     # attribute_decl_1: (VAL|VAR) identifier (COMMA identifier)* COLON data_types  SEMI
     def visitAttribute_decl_1(self, ctx:D96Parser.Attribute_decl_1Context):
         ctype = self.visit(ctx.data_types())
-        if str(ctype)[0] =="C": # class type -> var,const decl's exp = nullLit()
-            exp = NullLiteral()
-        else:
-            exp = None
+        exp = None
         res = []
         if ctx.VAL(): # Val a,$b:Int
             for i in ctx.identifier():
@@ -86,6 +84,8 @@ class ASTGeneration(D96Visitor):
         elif ctx.VAR():
             for i in ctx.identifier():
                 id = str(self.visit(i)) # return: Id(text)
+                if str(ctype)[0] =="C": # class type -> var decl's exp = nullLit()
+                    exp = NullLiteral()
                 if id[3] == "$":
                     kind = Static()
                     const = Id(id[3:-1])
@@ -156,11 +156,12 @@ class ASTGeneration(D96Visitor):
             kind = Static()
             name = Id(id[3:-1])
         else:
-            if id[3:-1] =="main" and len(param) == 0 and self.prog_flag==1 : # main trong Program thoi ?
+            if id[3:-1] =="main" and len(param) == 0 and self.prog_flag==1 and self.ret_flag==0: # main trong Program 
                 kind = Static()
             else:
                 kind = Instance()  
             name = Id(id[3:-1])
+        self.ret_flag = 0
         return MethodDecl(kind,name,param,body)
 
 
@@ -325,6 +326,7 @@ class ASTGeneration(D96Visitor):
     # return_statement : RETURN expr? SEMI
     def visitReturn_statement(self, ctx:D96Parser.Return_statementContext):
         if ctx.expr():
+            self.ret_flag = 1
             return Return(self.visit(ctx.expr()))
         else: 
             return Return()
@@ -374,10 +376,7 @@ class ASTGeneration(D96Visitor):
     # var_const_decl_1 : (VAR|VAL) ID (COMMA ID )* COLON data_types SEMI
     def visitVar_const_decl_1(self, ctx:D96Parser.Var_const_decl_1Context):
         ctype = self.visit(ctx.data_types())
-        if str(ctype)[0] == "C":
-            exp = NullLiteral()
-        else:
-            exp = None
+        exp = None
         res = []
         if ctx.VAL(): # Val a,$b:Int
             for i in ctx.ID():
@@ -392,6 +391,8 @@ class ASTGeneration(D96Visitor):
         elif ctx.VAR():
             for i in ctx.ID():
                 id = i.getText() # return: Id(text)
+                if str(ctype)[0] == "C":
+                    exp = NullLiteral()
                 if id[0] == "$":
                     const = Id(id)
                 else:
