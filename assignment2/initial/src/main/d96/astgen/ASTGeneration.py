@@ -7,7 +7,7 @@ from AST import *
 
 class ASTGeneration(D96Visitor):
     prog_flag = 0
-    ret_flag  = 0
+    # ret_flag  = 0
     # Visit a parse tree produced by D96Parser#program.
     # program : (class_decl)+ EOF
     # checked
@@ -156,12 +156,12 @@ class ASTGeneration(D96Visitor):
             kind = Static()
             name = Id(id[3:-1])
         else:
-            if id[3:-1] =="main" and len(param) == 0 and self.prog_flag==1 and self.ret_flag==0: # main trong Program 
+            if id[3:-1] =="main" and len(param) == 0 and self.prog_flag==1 : # main trong Program 
                 kind = Static()
             else:
                 kind = Instance()  
             name = Id(id[3:-1])
-        self.ret_flag = 0
+        # self.ret_flag = 0
         return MethodDecl(kind,name,param,body)
 
 
@@ -326,7 +326,7 @@ class ASTGeneration(D96Visitor):
     # return_statement : RETURN expr? SEMI
     def visitReturn_statement(self, ctx:D96Parser.Return_statementContext):
         if ctx.expr():
-            self.ret_flag = 1
+            # self.ret_flag = 1
             return Return(self.visit(ctx.expr()))
         else: 
             return Return()

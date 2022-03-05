@@ -1109,7 +1109,7 @@ class ASTGenSuite(unittest.TestCase):
                 }
             }
         """
-        expect = "Program([ClassDecl(Id(Program),[MethodDecl(Id(main),Instance,[],Block([Call(Self(),Id(print),[StringLit(wow)]),Block([Return(NewExpr(Id(classX),[FieldAccess(ArrayCell(FieldAccess(Self(),Id(b)),[IntLit(1)]),Id(a))])),Return(NewExpr(Id(classY),[CallExpr(ArrayCell(FieldAccess(Self(),Id(b)),[IntLit(1)]),Id(fun),[])]))]),Block([])]))])])"
+        expect = "Program([ClassDecl(Id(Program),[MethodDecl(Id(main),Static,[],Block([Call(Self(),Id(print),[StringLit(wow)]),Block([Return(NewExpr(Id(classX),[FieldAccess(ArrayCell(FieldAccess(Self(),Id(b)),[IntLit(1)]),Id(a))])),Return(NewExpr(Id(classY),[CallExpr(ArrayCell(FieldAccess(Self(),Id(b)),[IntLit(1)]),Id(fun),[])]))]),Block([])]))])])"
         self.assertTrue(TestAST.test(input, expect, 393))
     
     def test94(self):
