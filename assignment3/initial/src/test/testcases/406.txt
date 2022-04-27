@@ -1,0 +1,5 @@
+
+        Class c{
+            c(Var c,c : Int){ }
+        }
+        

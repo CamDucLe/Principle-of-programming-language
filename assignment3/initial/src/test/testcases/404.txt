@@ -1,0 +1,4 @@
+
+        Class A{ Var $A:Int; }
+        Class B{ Val $A:Int; }
+        

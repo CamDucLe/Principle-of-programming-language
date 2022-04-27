@@ -1,0 +1,7 @@
+
+        Class cam{
+            Var cam:Int;
+            Var duc,le :Int;
+        }
+        Class camcam{ Var $cam:Int;}
+        

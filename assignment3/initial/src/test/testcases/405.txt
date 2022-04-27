@@ -1,0 +1,10 @@
+
+        Class cc{
+            cc(){ }
+            cam(){ }
+        }
+        Class cam{ 
+            cam(){ }
+            cam(){ }
+        }
+        

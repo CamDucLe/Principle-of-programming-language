@@ -1,0 +1,6 @@
+
+        Class cc{
+            Var cam:Int;
+            Val cam :Int;
+        }
+        

@@ -1,0 +1,7 @@
+
+        Class cam{
+            Var cam:Int;
+            Var cc :Int;
+            Var cam:Float;
+        }
+        

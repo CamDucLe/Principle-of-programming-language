@@ -1,0 +1,8 @@
+
+        Class A{
+            c(c,d : Int;   e:Float){ }
+        }
+        Class c{
+            c( c:Int){ }
+        }
+        
