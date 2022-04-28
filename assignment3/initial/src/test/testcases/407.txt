@@ -1,8 +1,9 @@
 
         Class A{
-            c(c,d : Int;   e:Float){ }
+            $x(c,d : Int;   e:Float){ }
         }
         Class c{
             c( c:Int){ }
+            Val $x:Int;
         }
         

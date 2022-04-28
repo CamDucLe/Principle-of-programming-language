@@ -1,0 +1,9 @@
+
+        Class c{
+            Val c:Float;
+            cc(){ 
+                Val c:Int;
+                { Val c:Float; }
+            }
+        }
+        

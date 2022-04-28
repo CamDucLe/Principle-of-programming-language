@@ -3,6 +3,7 @@ from TestUtils import TestChecker
 from AST import *
 
 class CheckerSuite(unittest.TestCase):
+    ### Redeclared ###
     def test400(self):
         input = """
             Class l{ }
@@ -71,7 +72,7 @@ class CheckerSuite(unittest.TestCase):
     def test406(self):
         input = """
         Class c{
-            c(Var c,c : Int){ }
+            c( c,c : Int){ }
         }
         """
         expect = "Redeclared Parameter: c"
@@ -80,13 +81,14 @@ class CheckerSuite(unittest.TestCase):
     def test407(self):
         input = """
         Class A{
-            c(c,d : Int;   e:Float){ }
+            $x(c,d : Int;   e:Float){ }
         }
         Class c{
             c( c:Int){ }
+            Val $x:Int;
         }
         """
-        expect = "[]"
+        expect = "Redeclared Attribute: $x"
         self.assertTrue(TestChecker.test(input,expect,407))
     
     def test408(self):
@@ -100,3 +102,68 @@ class CheckerSuite(unittest.TestCase):
         """
         expect = "Redeclared Parameter: c"
         self.assertTrue(TestChecker.test(input,expect,408))
+    
+    def test409(self):
+        input = """
+        Class c{
+            Var c:String;
+            cc(c : Int){ 
+                Var c:Float;
+            }
+        }
+        """
+        expect = "Redeclared Variable: c"
+        self.assertTrue(TestChecker.test(input,expect,409))
+    
+    def test410(self):
+        input = """
+        Class c{
+            Val c:Float;
+            cc(){ 
+                Val c:Int;
+                Val c:Float;
+            }
+        }
+        """
+        expect = "Redeclared Constant: c"
+        self.assertTrue(TestChecker.test(input,expect,410))
+    
+    def test411(self):
+        input = """
+        Class c{
+            Val c:Float;
+            cc(){ 
+                Val c:Int;
+                { Val c:Float; }
+            }
+        }
+        """
+        expect = "[]"
+        self.assertTrue(TestChecker.test(input,expect,411))
+    
+    ### Undeclared ###
+    def test412(self):
+        input = """
+        Class b{
+            Var c:Int;
+        }
+        Class c{
+            c(){ 
+                c = 4;
+            }
+        }
+        """
+        expect = "Undeclared Identifier: c"
+        self.assertTrue(TestChecker.test(input,expect,412))
+    
+    def test413(self):
+        input = """
+        Class c{
+            c2(){ 
+                { Var c: Int;}
+                c = 4;
+            }
+        }
+        """
+        expect = "Undeclared Identifier: c"
+        self.assertTrue(TestChecker.test(input,expect,413))

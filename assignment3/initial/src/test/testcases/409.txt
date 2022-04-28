@@ -1,0 +1,8 @@
+
+        Class c{
+            Var c:String;
+            cc(c : Int){ 
+                Var c:Float;
+            }
+        }
+        

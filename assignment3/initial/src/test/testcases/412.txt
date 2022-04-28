@@ -1,0 +1,10 @@
+
+        Class b{
+            Var c:Int;
+        }
+        Class c{
+            c(){ 
+                c = 4;
+            }
+        }
+        

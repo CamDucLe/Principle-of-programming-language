@@ -1,5 +1,5 @@
 
         Class c{
-            c(Var c,c : Int){ }
+            c( c,c : Int){ }
         }
         
