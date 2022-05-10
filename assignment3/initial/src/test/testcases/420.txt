@@ -1,0 +1,6 @@
+
+        Class c{
+            Var a: CC;
+            c(){  }
+        }
+        

@@ -1,0 +1,8 @@
+
+        Class c{
+            c(){  
+                Var CC:Int;
+                Self.CC();
+            }
+        }
+        

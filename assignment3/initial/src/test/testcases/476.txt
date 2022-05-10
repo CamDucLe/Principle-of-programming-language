@@ -1,0 +1,9 @@
+
+        Class C{
+            Val b:Int = 5;
+            func(v:Int){
+                Val c: Float = 5;
+                Val a : Float = c + Self.b ;
+            }
+        }
+        

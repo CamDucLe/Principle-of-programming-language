@@ -1,0 +1,12 @@
+
+        Class C{
+            Var b:Boolean = True; 
+            fun(){  
+                Var a: Int;
+                Var k :Float;
+                Val f :Float = 5;
+                k = 5 + (f+2.3);
+                a = 5+(!6);
+            }
+        }
+        

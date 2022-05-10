@@ -1,0 +1,1 @@
+Type Mismatch In Statement: AttributeDecl(Instance,VarDecl(Id(a),IntType,BinaryOp(+,FieldAccess(Self(),Id(b)),FloatLit(5.5))))

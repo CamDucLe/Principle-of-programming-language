@@ -1,0 +1,15 @@
+
+        Class A{
+            func(){ 
+                Return 27;
+            }
+        }
+        Class C{
+            f(){ }
+            Var  obj : Int;
+            test(x:Array[Int,5]){
+                Var k :Float;  
+                k = Self.obj.func();
+            }
+        }
+        

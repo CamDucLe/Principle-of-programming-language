@@ -1,0 +1,1 @@
+Cannot Assign To Constant: AssignStmt(ArrayCell(FieldAccess(Id(c2),Id(x)),[IntLit(0)]),IntLit(10))

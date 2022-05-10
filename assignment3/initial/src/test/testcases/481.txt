@@ -1,0 +1,7 @@
+
+        Class C{
+            func(v:Int){
+                Var c: Array[Int,5] = Array(False,True);
+            }
+        }
+        

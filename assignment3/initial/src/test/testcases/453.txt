@@ -1,0 +1,15 @@
+
+        Class A{
+            Var att:Int = 5;
+            func(){ }
+        }
+        Class C{
+            f(){ }
+            Var  obj : Int;
+            test(x:Array[Int,5];f:Boolean){
+                Var o :A;  
+                x[1] = o.att;
+                x[1] = Self.obj.att;
+            }
+        }
+        

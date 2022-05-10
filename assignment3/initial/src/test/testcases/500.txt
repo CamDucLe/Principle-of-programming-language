@@ -1,1 +1,1 @@
-void main() {putInt(100);}
+Program([ClassDecl(Id(Program),[MethodDecl(Id(main),Static,[],Block([])),AttributeDecl(Instance,VarDecl(Id(myVar),StringType,StringLit(Hello World))),AttributeDecl(Instance,VarDecl(Id(myVar),IntType))])])

@@ -1,0 +1,14 @@
+
+        
+        Class Animal { 
+            Var b:Int;
+            Constructor(x:Int){
+
+            }
+        }
+        Class Dog{
+            f(){
+                Val d:Animal = New Animal () ;
+            }
+        }
+        

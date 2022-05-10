@@ -1,0 +1,9 @@
+
+        Class C{
+            Var b:Float = 55; 
+            fun(){  
+                Var a: Int = 55;
+                Self.b = a % 4.4;
+            }
+        }
+        

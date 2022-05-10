@@ -1,0 +1,12 @@
+
+        Class A{
+            func(){ }
+        }
+        Class C{
+            f(){ }
+            test(x:Array[Int,5];f:Boolean){  
+                Var  obj : String;
+                obj.func();
+            }
+        }
+        

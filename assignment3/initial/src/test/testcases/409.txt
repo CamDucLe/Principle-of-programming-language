@@ -1,6 +1,6 @@
 
-        Class c{
-            Var c:String;
+        Class c0{
+            Var c1:String;
             cc(c : Int){ 
                 Var c:Float;
             }

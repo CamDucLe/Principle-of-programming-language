@@ -1,0 +1,9 @@
+
+        Class b{ }
+        Class c{
+            c(){  
+                Var obj:b;
+                obj.CC();
+            }
+        }
+        

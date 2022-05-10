@@ -1,0 +1,11 @@
+
+        Class a{ }
+        Class C{
+            Var x: Array[Float,5] = Array(11.2);
+            Val y: Array[Float,5] = Array(11.1,12.6);
+            Var z: Int = 5;
+            Var b: Float = 5; 
+            Val l: String = "STR";
+            Val r: Boolean = 27.3;
+        }
+        

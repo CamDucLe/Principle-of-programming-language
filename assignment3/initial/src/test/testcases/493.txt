@@ -1,0 +1,7 @@
+
+        Class Program { 
+            Var a:Int;
+            Var main:Int=Self.a;
+            main(x:Int ) { }
+        }
+        

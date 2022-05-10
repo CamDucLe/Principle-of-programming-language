@@ -1,0 +1,15 @@
+
+        Class A{
+            Var a : Array[Int,5];
+        }
+        Class B{
+            func(){
+                Var obj :A;
+                Var k:Float;
+                Val d:Int = 5;
+                k = d ;
+                k = obj.a[1] ;
+                obj.a[1.1] = d;
+            }
+        }
+        

@@ -1,0 +1,11 @@
+
+        Class A { }
+        Class C{
+            Var arr:Array[Int,4] ;
+            Var d:A;
+            Var c:Boolean;
+            Var b:Float ;
+            Var a : Float = Self.b + 5.5;
+            func(v:Int){ }
+        }
+        

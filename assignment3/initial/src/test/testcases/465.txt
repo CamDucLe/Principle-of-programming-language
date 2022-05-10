@@ -1,0 +1,11 @@
+
+        Class A { }
+        Class C{
+            func(x:Int){ 
+                Var z:Boolean = True;
+                Var c :Int = 4;
+                z = ! False;
+                z = ! (x+c);
+            }
+        }
+        

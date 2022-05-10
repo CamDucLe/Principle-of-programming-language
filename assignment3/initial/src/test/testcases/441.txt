@@ -1,0 +1,12 @@
+
+        Class A{
+            func(){ }
+        }
+        Class C{
+            Var  obj : Int;
+            f(){ }
+            testAssign(x:Array[Int,5];y:Boolean){  
+                Self.obj.func();
+            }
+        }
+        

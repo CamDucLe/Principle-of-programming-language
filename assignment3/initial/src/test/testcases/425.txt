@@ -1,0 +1,8 @@
+
+        Class c{
+            Val a:Int = 5;
+            m(){  
+                Self.a = 10;
+            }
+        }
+        

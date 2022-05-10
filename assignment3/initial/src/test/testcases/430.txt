@@ -1,0 +1,12 @@
+
+        Class B{
+            Var b:Float;
+        }
+        Class C{
+            testIf(){  
+                Var a:Int =5 ;
+                Var obj:B;
+                If (obj.b>=a){ }
+            }
+        }
+        

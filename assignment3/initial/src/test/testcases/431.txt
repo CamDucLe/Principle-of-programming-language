@@ -1,0 +1,9 @@
+
+        Class C{
+            Var b:String;
+            testIf(){  
+                Var a:Int =5 ;
+                If (Self.b==a){ }
+            }
+        }
+        

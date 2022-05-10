@@ -1,0 +1,11 @@
+
+        Class C{
+            Var b:Boolean = True; 
+            fun(){  
+                Var a: Boolean;
+                a = !Self.b ;
+                Self.b = !True; 
+                a = !(!5) ;
+            }
+        }
+        

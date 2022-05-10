@@ -1,0 +1,19 @@
+
+        Class A{
+            foo(x:Float){ 
+                Return 5;
+            }
+        }
+        Class C{
+            func(x:Int){ }
+            f(){
+                Var obj:A;
+                Var f:Float;
+                Var i:Int;
+                Val s:String ="str";
+                obj.foo(f);
+                obj.foo(i);
+                obj.foo(s);
+            }
+        }
+        

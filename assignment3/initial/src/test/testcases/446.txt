@@ -1,0 +1,14 @@
+
+        Class a{ }
+        Class C{
+            fun(){
+                Var d,e: Int = 6,9;
+                Var z:a;
+                Val j,k,l:Int=1,2,3;
+                Val str:String = "str";
+                Val c1:Float = 99;
+                Var c2:Float = 98;
+                Var i: Int = "str";
+            }
+        }
+        

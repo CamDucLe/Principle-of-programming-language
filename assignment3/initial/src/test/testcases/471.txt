@@ -1,0 +1,10 @@
+
+        Class A { }
+        Class C{
+            func(v:Int){
+                Var b:Int = 5;
+                Val k:Int = 5;
+                Val a : Float = b;
+            }
+        }
+        

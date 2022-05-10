@@ -1,0 +1,12 @@
+
+        Class B { 
+            Var $i:Int;
+        }
+        Class C{
+            Var obj:B; 
+            func(v:Int){ 
+                Var b:Int;
+                b = A::$i;
+            }
+        }
+        

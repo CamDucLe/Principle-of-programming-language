@@ -1,0 +1,11 @@
+
+        Class B{ 
+            Val a:Int = 27;
+        }
+        Class c{
+            m(){  
+                Var b:B;
+                b.a = 10;
+            }
+        }
+        

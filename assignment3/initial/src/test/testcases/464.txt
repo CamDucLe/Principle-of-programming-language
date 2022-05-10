@@ -1,0 +1,10 @@
+
+        Class A { }
+        Class C{
+            func(x:Int){ 
+                Val z:Boolean = True;
+                Val m:String = "asd";
+                Val l: String = 5.5; 
+            }
+        }
+        

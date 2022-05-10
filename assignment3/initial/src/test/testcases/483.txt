@@ -1,0 +1,7 @@
+
+        Class A { }
+        Class C{
+            Val a : Int;
+            func(v:Int){ }
+        }
+        

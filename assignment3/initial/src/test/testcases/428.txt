@@ -1,0 +1,11 @@
+
+        Class c1{
+            Val x:Array[Int, 1]= Array(7,2);
+        }
+        Class c2{
+            m(){  
+                Var c2:c1;
+                c2.x[0] = 10;
+            }
+        }
+        

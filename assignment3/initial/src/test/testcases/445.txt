@@ -1,0 +1,9 @@
+
+        Class C{
+            func(){
+                Var a:Array[Int,5];
+                Var k:Float;
+                k = a[4][6.6];
+            }
+        }
+        

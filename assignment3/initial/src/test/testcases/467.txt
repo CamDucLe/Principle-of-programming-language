@@ -1,0 +1,19 @@
+
+        Class A { }
+        Class C{
+            func(x:Int){ 
+                Var i:Int ;
+                Foreach (i In 1 .. 5 By 2){
+                    {Continue;}
+                    If ( 5 == i  ){
+                        
+                        Continue;
+                    }
+                    Continue;
+                }
+                If ( True == False ){
+                    Continue;
+                }
+            }
+        }
+        

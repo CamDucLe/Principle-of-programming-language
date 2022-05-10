@@ -1,1 +1,1 @@
-100
+Redeclared Attribute: myVar

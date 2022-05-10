@@ -1,0 +1,15 @@
+
+        Class A{
+            Var  x : Array[Float,5];
+        }
+        Class C{
+            Var obj : A;
+            Var  k : Array[Float,5];
+            testAssign(x:Int;y:Boolean){  
+                Var cc : Array[String,5];
+                Self.obj.x[0] = Self.k[2] ;
+                Self.obj.x[0] = x ;
+                cc[2] = Self.obj.x[0] ;
+            }
+        }
+        

@@ -1,0 +1,8 @@
+
+        Class C{
+            func(v:Int){
+                Var c: Array[Int,5] = Array(1,2,3);
+                Val a : Array[Int,5] = c ;
+            }
+        }
+        

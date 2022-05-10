@@ -1,0 +1,8 @@
+
+        Class A { }
+        Class C{
+            func(x:Int){ 
+                Val k:A = 5;
+            }
+        }
+        

@@ -1,0 +1,10 @@
+
+        Class c0{ }
+        Class c{
+            c2(){ 
+                Var cc: c0; 
+                { Var t: Int;}
+                cc.t = 4;
+            }
+        }
+        

@@ -1,0 +1,6 @@
+
+        Class C{
+            Var f: Float = 5.5;
+            f(){  }
+        }
+        

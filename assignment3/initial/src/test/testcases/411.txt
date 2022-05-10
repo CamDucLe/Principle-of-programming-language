@@ -1,9 +1,9 @@
 
         Class c{
-            Val c:Float;
+            Val c:Float = 27;
             cc(){ 
-                Val c:Int;
-                { Val c:Float; }
+                Val c:Int= 27;
+                { Val c:Float = 27; }
             }
         }
         

@@ -1,0 +1,10 @@
+
+        Class C{
+            Var  k : Array[Float,5];
+            testAssign(x:Array[Int,5];y:Boolean){  
+                Var cc: Array[Float,6];
+                Self.k = x;
+                cc = Self.k ;
+            }
+        }
+        

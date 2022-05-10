@@ -1,0 +1,9 @@
+
+        Class A{ }
+        Class C{
+            func(v:Int){
+                Var b:A;
+                Var c: Array[Boolean,5] = Array(False,True);
+            }
+        }
+        

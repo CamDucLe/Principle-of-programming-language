@@ -1,0 +1,11 @@
+
+        Class C{
+            Var b:String = "asd"; 
+            fun(){  
+                Var a: Int = 55;
+                Self.b = Self.b +. "tail";
+                Var s :String;
+                s = "head" + a;
+            }
+        }
+        

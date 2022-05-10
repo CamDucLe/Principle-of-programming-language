@@ -1,0 +1,7 @@
+
+        Class c{
+            c2(){ 
+                Val a :CC;
+            }
+        }
+        

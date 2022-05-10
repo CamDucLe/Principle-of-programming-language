@@ -1,0 +1,10 @@
+
+        Class A { }
+        Class C{
+            Val arr:Array[Int,4] = Array("a",2);
+            Val d:A;
+            Val c:Boolean = ! True;
+            Val b:Int = 5 + 5;
+            func(v:Int){ }
+        }
+        

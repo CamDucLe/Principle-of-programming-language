@@ -1,0 +1,9 @@
+
+        Class C{
+            Val b:Float = 55; 
+            fun(){  
+                Var a: Float = 55;
+                a = "asd" + 4.3;
+            }
+        }
+        

@@ -1,0 +1,12 @@
+
+        Class A{
+            Var x: Float;
+        }
+        Class C{
+            Var obj : A;
+            testAssign(x:Int;y:Boolean){  
+                Var i :Int;
+                Self.obj.x = i ;
+            }
+        }
+        

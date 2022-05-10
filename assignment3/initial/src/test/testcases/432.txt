@@ -1,0 +1,11 @@
+
+        Class C{
+            testIf(){  
+                Var a:Int =0 ;
+                Foreach (a In  1 .. 5 By 1){
+                    Var b: Float;
+                    If (a == b){ }
+                }
+            }
+        }
+        

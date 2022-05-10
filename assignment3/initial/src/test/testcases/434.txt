@@ -1,0 +1,16 @@
+
+        Class C{
+            Var i :Int;
+            testFor(a:Float; b:Int; s:String;i:Int){  
+                Foreach (i In  1 .. 5 By 1){
+                    If( b >= Self.i){  
+                        Var j:Int;
+                        Foreach (j In 1 .. 4){
+                            If(a == j){ } 
+                        }
+                    }
+                    If(s==."str"){  }
+                }
+            }
+        }
+        

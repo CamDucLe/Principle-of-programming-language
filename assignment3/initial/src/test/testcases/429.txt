@@ -1,0 +1,8 @@
+
+        Class c{
+            Val x:Array[Int, 1] = Array(0);
+            m(){  
+                Self.x[0] = 27;
+            }
+        }
+        

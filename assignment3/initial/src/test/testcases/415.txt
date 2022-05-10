@@ -1,0 +1,8 @@
+
+        Class c{
+            c2(){ 
+                { Var c: Int;}
+                Self.c = 4;
+            }
+        }
+        

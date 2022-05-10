@@ -1,0 +1,13 @@
+
+        
+        Class Animal { 
+            Var b:Int;
+            Constructor(x:Float){ }
+        }
+        Class Dog{
+            Var c:Int;
+            Val d:Animal = New Animal (Self.c) ;
+            Val d2:Animal = New Animal ("str") ;
+            f(){            }
+        }
+        
