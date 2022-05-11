@@ -1,1 +1,1 @@
-Type Mismatch In Statement: AssignStmt(ArrayCell(Id(cc),[IntLit(2)]),ArrayCell(FieldAccess(FieldAccess(Self(),Id(obj)),Id(x)),[IntLit(0)]))
+Type Mismatch In Statement: AssignStmt(ArrayCell(Id(cc),[IntLit(2)]),ArrayCell(FieldAccess(FieldAccess(Self(),Id(obj)),Id(x)),[IntLit(1)]))

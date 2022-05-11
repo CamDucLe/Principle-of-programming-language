@@ -7,9 +7,9 @@
             Var  k : Array[Float,5];
             testAssign(x:Int;y:Boolean){  
                 Var cc : Array[String,5];
-                Self.obj.x[0] = Self.k[2] ;
-                Self.obj.x[0] = x ;
-                cc[2] = Self.obj.x[0] ;
+                Self.obj.x[1] = Self.k[2] ;
+                Self.obj.x[1] = x ;
+                cc[2] = Self.obj.x[1] ;
             }
         }
         

@@ -1,1 +1,1 @@
-Type Mismatch In Statement: AssignStmt(ArrayCell(Id(c2),[IntLit(0)]),ArrayCell(Id(c1),[IntLit(4)]))
+Type Mismatch In Statement: AssignStmt(ArrayCell(Id(c2),[IntLit(1)]),ArrayCell(Id(c1),[IntLit(4)]))

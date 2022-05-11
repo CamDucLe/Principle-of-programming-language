@@ -345,7 +345,7 @@ class CheckerSuite(unittest.TestCase):
     def test428(self):
         input = """
         Class c1{
-            Val x:Array[Int, 1]= Array(7,2);
+            Val x:Array[Int, 3]= Array(7,2);
         }
         Class c2{
             m(){  
@@ -494,11 +494,11 @@ class CheckerSuite(unittest.TestCase):
                 Var c1 : Array[Float,5];
                 Var c2 : Array[Int,5];
                 c1[4] = 5;
-                c2[0] = c1[4];
+                c2[1] = c1[4];
             }
         }
         """
-        expect = "Type Mismatch In Statement: AssignStmt(ArrayCell(Id(c2),[IntLit(0)]),ArrayCell(Id(c1),[IntLit(4)]))" 
+        expect = "Type Mismatch In Statement: AssignStmt(ArrayCell(Id(c2),[IntLit(1)]),ArrayCell(Id(c1),[IntLit(4)]))" 
         self.assertTrue(TestChecker.test(input,expect,437))
     
     def test438(self):
@@ -511,13 +511,13 @@ class CheckerSuite(unittest.TestCase):
             Var  k : Array[Float,5];
             testAssign(x:Int;y:Boolean){  
                 Var cc : Array[String,5];
-                Self.obj.x[0] = Self.k[2] ;
-                Self.obj.x[0] = x ;
-                cc[2] = Self.obj.x[0] ;
+                Self.obj.x[1] = Self.k[2] ;
+                Self.obj.x[1] = x ;
+                cc[2] = Self.obj.x[1] ;
             }
         }
         """
-        expect = "Type Mismatch In Statement: AssignStmt(ArrayCell(Id(cc),[IntLit(2)]),ArrayCell(FieldAccess(FieldAccess(Self(),Id(obj)),Id(x)),[IntLit(0)]))" 
+        expect = "Type Mismatch In Statement: AssignStmt(ArrayCell(Id(cc),[IntLit(2)]),ArrayCell(FieldAccess(FieldAccess(Self(),Id(obj)),Id(x)),[IntLit(1)]))" 
         self.assertTrue(TestChecker.test(input,expect,438))
     
     def test439(self):
@@ -1439,6 +1439,46 @@ class CheckerSuite(unittest.TestCase):
         """
         expect = "Type Mismatch In Expression: NewExpr(Id(Animal),[Id(x),Id(y)])" 
         self.assertTrue(TestChecker.test(input,expect,499))
+    
+    # Test linh tinh #
+    # def test501(self):  #
+    #     input = """
+    #     Class Animal { 
+    #         Var k:Int;
+    #         Var lst:Array[Int,7];
+    #         function(x:Int;y:Float;z:String;b:Boolean){ 
+    #             Return 5;
+    #         }
+    #         fun(x:Int){ }
+    #     }
+    #     Class Dog : Animal{
+    #         Var z:Int=5;
+    #         Var p:Float;
+    #         Val arr2:Array[String,5] = Array("1","2","3","4","5");
+    #         Val t:String = Self.arr2[2][Self.z];
+    #         f(){
+    #             Var x:Int;
+    #             Val s:String ="str";
+    #             Var d:Animal;
+    #             Var arr:Array[Int,5] = Array(1,2,3,4,5);
+    #             d.fun(Self.z);
+    #             x = d.function(d.k,arr[1],s,True); 
+    #             x = d.function(d.k,arr[x],"s",False); 
+    #             d.fun(arr[x][Self.z]);
+    #             d.fun(arr[3]);
+    #             d.function(d.k,arr[2],s,True); 
+    #             arr[x] = 5;
+    #             arr[2] = 5;
+    #             arr[Self.z] = d.lst[1];
+    #             d.lst[Self.z] = arr[d.k] ;
+    #             Val num1:Float = arr[Self.z];
+    #             Val num2:Float = arr[x];
+    #             arr[1][2][d.k] = arr[2][Self.z][d.k];
+    #         }
+    #     }
+    #     """
+    #     expect = "[]" 
+    #     self.assertTrue(TestChecker.test(input,expect,501))
 
     # test on Bkel #
     

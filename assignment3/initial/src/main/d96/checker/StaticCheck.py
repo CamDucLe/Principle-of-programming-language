@@ -1,21 +1,9 @@
-
 """
  * @author nhphung
 """
 from ast import Global
-from ctypes import c_bool
-from doctest import FAIL_FAST
-from pyclbr import Function
-from tabnanny import check
-from turtle import left
-# from typing_extensions import Self
-
-from numpy import block
-from regex import A
-from sqlalchemy import false
 from AST import * 
 from Visitor import *
-from Utils import Utils
 from StaticError import *
 # Le Duc Cam - 1952588 #
 
@@ -44,7 +32,7 @@ class Symbol:
         self.arr_size = arr_size
         self.param_list = param_list
 
-class StaticChecker(BaseVisitor,Utils):
+class StaticChecker(BaseVisitor):
 
     global_envi = [
     Symbol("getInt",MType([],IntType())),
@@ -76,7 +64,7 @@ class StaticChecker(BaseVisitor,Utils):
         program_flag = False
         if ast.classname.name == "Program" and ast.parentname is None:
             program_flag = True
-            
+
         current_class = c[-1]
             # Check memlist of ClassDecl #
         if program_flag == True:
@@ -95,7 +83,7 @@ class StaticChecker(BaseVisitor,Utils):
             self.visit(mem, (c,current_class))
         
         if type(ast.parentname) is Id:
-            self.visit(ast.parentname,(c,Class(),'check_undeclared_cl'))
+            self.visit(ast.parentname,(c,Class(),'check_undeclared_cl'))  
 
         if self.no_entry_flag == True and self.number_of_return!=0:       
             raise NoEntryPoint()
@@ -106,6 +94,8 @@ class StaticChecker(BaseVisitor,Utils):
         if constructor_flag == False:
             self.visit(MethodDecl(Instance(),Id('Constructor'),[],Block([])),(c,current_class))
         self.number_of_return = 0
+        self.main_flag = False
+
         return 
 
     def visitMethodDecl(self, ast:MethodDecl, c_currentclass):
@@ -142,7 +132,6 @@ class StaticChecker(BaseVisitor,Utils):
         if type(ast.decl) is VarDecl:
             mtype = ast.decl.varType
             name = self.visit(ast.decl.variable, (c, Attribute(),class_belong_to,mtype,'check_redeclared'))
-            # mtype = ast.decl.varType
             if type(ast.decl.varType) is ArrayType:
                 sub_type = ast.decl.varType.eleType
                 arr_size = ast.decl.varType.size
@@ -177,8 +166,7 @@ class StaticChecker(BaseVisitor,Utils):
                     for i in c: 
                         if ast.decl.varInit.fieldname.name == i.name and i.class_belong_to == class_belong_to and type(i.scope) in [Class,Global] and type(i.kind) is Variable:
                             type_value = i.mtype
-                            break
-                
+                            break                
                 elif type(ast.decl.varInit) in [IntLiteral,StringLiteral,FloatLiteral,BooleanLiteral]:
                     type_value = self.visit(ast.decl.varInit,c) 
                 elif type(ast.decl.varInit) is NewExpr:
@@ -202,7 +190,8 @@ class StaticChecker(BaseVisitor,Utils):
                         if type(i) is Id:
                             raise TypeMismatchInExpression(ast.decl.varInit)
                         elif type(i) is ArrayCell:
-                            raise TypeMismatchInExpression(ast.decl.varInit)
+                            if type(i.arr) is ArrayCell:
+                                raise TypeMismatchInExpression(ast.decl.varInit)
                         elif type(i) is FieldAccess:
                             tmp_class_refer =  self.visit(i,(c,class_belong_to,None,None,None))
                             type_list_newexpr.append(self.visit(i.fieldname,(c,class_belong_to,None,None,tmp_class_refer,'check_type')))
@@ -222,13 +211,35 @@ class StaticChecker(BaseVisitor,Utils):
                     type_value = ClassType(Id('s'))
                 elif type(ast.decl.varInit) is NullLiteral:
                     xyz=27
+                elif type(ast.decl.varInit) is ArrayCell:
+                    if type(ast.decl.varInit.arr) is not FieldAccess:
+                        raise TypeMismatchInExpression(ast.decl.varInit)
+                    else: 
+                        tmp_class_refer = self.visit(ast.decl.varInit.arr,(c,class_belong_to,None,None))
+                        type_value = self.visit(ast.decl.varInit.arr.fieldname,(c,class_belong_to,None,None,tmp_class_refer,"check_type"))
+                        type_value = type_value.eleType
+                        self.visit(ast.decl.varInit.arr.fieldname,(c,Attribute(),class_belong_to,tmp_class_refer,'check_undeclared_at'))
+                        for i in range(len(ast.decl.varInit.idx)):
+                            type_idx = None
+                            if type(ast.decl.varInit.idx[i]) is Id:
+                                raise TypeMismatchInExpression(ast.decl.varInit)
+                            elif type(ast.decl.varInit.idx[i]) is FieldAccess:
+                                tmp_class_refer2 = self.visit(ast.decl.varInit.idx[i],(c,class_belong_to,None,None))
+                                type_idx = self.visit(ast.decl.varInit.idx[i].fieldname,(c,class_belong_to,None,None,tmp_class_refer2,'check_type'))
+                            elif type(ast.decl.varInit.idx[i]) in [IntLiteral,FloatLiteral,BooleanLiteral,StringLiteral]:
+                                type_idx = self.visit(ast.decl.varInit.idx[i],c)
+                
+                            if type(type_idx) is not IntType:
+                                raise TypeMismatchInExpression(ast.decl.varInit)
+
                 elif type(mtype) is ArrayType:
                     if type(ast.decl.varInit) is not ArrayLiteral:
                         raise TypeMismatchInStatement(ast)    
                     else:       ### ast value is ArrayLiteral
+                        if len(ast.decl.varInit.value) > arr_size:
+                            raise TypeMismatchInStatement(ast)
                         tmp_type = None
                         tmp_type = self.visit(ast.decl.varInit.value[0],c)
-                        
                         for i in ast.decl.varInit.value:
                             if  type(self.visit(i,c)) != type(tmp_type):
                                 raise IllegalArrayLiteral(ast.decl.varInit)
@@ -295,8 +306,7 @@ class StaticChecker(BaseVisitor,Utils):
                         else: self.const_flag = True
                     
                     if self.const_flag == True or self.const_flag_2 == True:
-                        raise IllegalConstantExpression(ast.value) 
-                
+                        raise IllegalConstantExpression(ast.value)          
                 elif type(ast.decl.value) in [IntLiteral,StringLiteral,FloatLiteral,BooleanLiteral]:
                     type_value = self.visit(ast.decl.value,c) 
                 elif type(ast.decl.value) is NewExpr:
@@ -320,7 +330,8 @@ class StaticChecker(BaseVisitor,Utils):
                         if type(i) is Id:
                             raise TypeMismatchInExpression(ast.decl.value)
                         elif type(i) is ArrayCell:
-                            raise TypeMismatchInExpression(ast.decl.value)
+                            if type(i.arr) is Id:
+                                raise TypeMismatchInExpression(ast.decl.value)
                         elif type(i) is FieldAccess:
                             tmp_class_refer =  self.visit(i,(c,class_belong_to,None,None,None))
                             type_list_newexpr.append(self.visit(i.fieldname,(c,class_belong_to,None,None,tmp_class_refer,'check_type')))
@@ -340,13 +351,34 @@ class StaticChecker(BaseVisitor,Utils):
                     type_value = ClassType(Id('s'))
                 elif type(ast.decl.value) is NullLiteral:
                     xyz=27
+                elif type(ast.decl.value) is ArrayCell:
+                    if type(ast.decl.value.arr) is not FieldAccess:
+                        raise TypeMismatchInExpression(ast.decl.value)
+                    else: 
+                        tmp_class_refer = self.visit(ast.decl.value.arr,(c,class_belong_to,None,None))
+                        type_value = self.visit(ast.decl.value.arr.fieldname,(c,class_belong_to,None,None,tmp_class_refer,"check_type"))
+                        type_value = type_value.eleType
+                        self.visit(ast.decl.value.arr.fieldname,(c,Attribute(),class_belong_to,tmp_class_refer,'check_undeclared_at'))
+                        for i in range(len(ast.decl.value.idx)):
+                            type_idx = None
+                            if type(ast.decl.value.idx[i]) is Id:
+                                raise TypeMismatchInExpression(ast.decl.value)
+                            elif type(ast.decl.value.idx[i]) is FieldAccess:
+                                tmp_class_refer2 = self.visit(ast.decl.value.idx[i],(c,class_belong_to,None,None))
+                                type_idx = self.visit(ast.decl.value.idx[i].fieldname,(c,class_belong_to,None,None,tmp_class_refer2,'check_type'))
+                            elif type(ast.decl.value.idx[i]) in [IntLiteral,FloatLiteral,BooleanLiteral,StringLiteral]:
+                                type_idx = self.visit(ast.decl.value.idx[i],c)
+                
+                            if type(type_idx) is not IntType:
+                                raise TypeMismatchInExpression(ast.decl.value)
                 elif type(mtype) is ArrayType:
                     if type(ast.decl.value) is not ArrayLiteral:
                         raise TypeMismatchInConstant(ast)    
                     else:       ### ast value is ArrayLiteral
+                        if len(ast.decl.value.value) > arr_size:
+                            raise TypeMismatchInStatement(ast)
                         tmp_type = None
                         tmp_type = self.visit(ast.decl.value.value[0],c)
-                        
                         for i in ast.decl.value.value:
                             if  type(self.visit(i,c)) != type(tmp_type):
                                 raise IllegalArrayLiteral(ast.decl.value)
@@ -480,9 +512,9 @@ class StaticChecker(BaseVisitor,Utils):
             else:     # ast.name == i.name                  # declared but in different scope 
                 for i in c[0]:
                     if (i.name == ast.name):
-                        if class_refer is None or class_refer == class_belong_to:
+                        if class_refer is None or class_refer == class_belong_to: 
                             if (i.class_belong_to == class_belong_to and type(i.scope) in [Class,Global]): # same class
-                                return
+                                return i.mtype
                         else:
                             if i.class_refer == class_refer:
                                 return i.mtype
@@ -549,7 +581,7 @@ class StaticChecker(BaseVisitor,Utils):
             class_refer = class_belong_to
         value = ast.varInit  
         scope = Method()
-        c.append(Symbol(name, mtype, value, kind, scope,class_belong_to,method_belong_to,block_number,class_refer,sub_type,arr_size))
+        
         if ast.varInit is not None:
             type_value = None
             if type(ast.varInit) in [BinaryOp,UnaryOp]:
@@ -596,10 +628,29 @@ class StaticChecker(BaseVisitor,Utils):
                 type_value = ClassType(Id('s'))        
             elif type(self.visit(value,c)) is NullLiteral:
                 xyz=27
+            elif type(ast.varInit) is ArrayCell:
+                self.visit(ast.varInit.arr,(c,Identifier(),class_belong_to,method_belong_to,block_number,'check_undeclared_id'))    
+                for i in range(len(ast.varInit.idx)):
+                    type_idx = None
+                    if type(ast.varInit.idx[i]) is Id:
+                        self.visit(ast.varInit.idx[i],(c,Identifier(),class_belong_to,method_belong_to,block_number,'check_undeclared_id'))    
+                        type_idx = self.visit(ast.varInit.idx[i],(c,class_belong_to,method_belong_to,block_number,None,'check_type'))
+                    elif type(ast.varInit.idx[i]) is FieldAccess:
+                        tmp_class_refer = self.visit(ast.varInit.idx[i],(c,class_belong_to,method_belong_to,block_number))
+                        type_idx = self.visit(ast.varInit.idx[i].fieldname,(c,class_belong_to,method_belong_to,block_number,tmp_class_refer,'check_type'))
+                    elif type(ast.varInit.idx[i]) in [IntLiteral,FloatLiteral,BooleanLiteral,StringLiteral]:
+                        type_idx = self.visit(ast.varInit.idx[i],c)
+                
+                    if type(type_idx) is not IntType:
+                        raise TypeMismatchInExpression(ast.varInit)
+                type_value = self.visit(ast.varInit.arr,(c,class_belong_to,method_belong_to,block_number,None,'check_type'))
+                type_value = type_value.eleType
             elif type(mtype) is ArrayType:
                 if type(ast.varInit) is not ArrayLiteral:
                     raise TypeMismatchInStatement(ast)    
                 else:       ### ast varInit is ArrayLiteral
+                    if len(ast.varInit.value) > arr_size:
+                        raise TypeMismatchInStatement(ast)
                     tmp_type = None
                     tmp_type = self.visit(ast.varInit.value[0],c)
                     for i in ast.varInit.value:
@@ -620,6 +671,8 @@ class StaticChecker(BaseVisitor,Utils):
                     xyz=27
                 else:
                     raise TypeMismatchInStatement(ast)
+        
+        c.append(Symbol(name, mtype, value, kind, scope,class_belong_to,method_belong_to,block_number,class_refer,sub_type,arr_size))
         return
     
     const_flag = False
@@ -650,8 +703,7 @@ class StaticChecker(BaseVisitor,Utils):
         value = ast.value  
         scope = Method()
         c.append(Symbol(name, mtype, value, kind, scope,class_belong_to,method_belong_to,block_number,class_refer,sub_type,arr_size))
-        
-        
+               
         if ast.value is None and type(mtype) is not ClassType:
             raise IllegalConstantExpression(None) 
         type_value = None
@@ -680,8 +732,7 @@ class StaticChecker(BaseVisitor,Utils):
                         break
                     else: self.const_flag = True
                 if self.const_flag == True or self.const_flag_2 == True:
-                    raise IllegalConstantExpression(ast.value) 
-                
+                    raise IllegalConstantExpression(ast.value)              
             elif type(ast.value) in [IntLiteral,StringLiteral,FloatLiteral,BooleanLiteral]:
                 type_value = self.visit(ast.value,c) 
             elif type(ast.value) is NewExpr:
@@ -717,10 +768,29 @@ class StaticChecker(BaseVisitor,Utils):
                 type_value = ClassType(Id('s'))
             elif type(ast.value) is NullLiteral:
                 xyz=27
+            elif type(ast.value) is ArrayCell:
+                self.visit(ast.value.arr,(c,Identifier(),class_belong_to,method_belong_to,block_number,'check_undeclared_id'))
+                for i in range(len(ast.value.idx)):
+                    type_idx = None
+                    if type(ast.value.idx[i]) is Id:
+                        self.visit(ast.value.idx[i],(c,Identifier(),class_belong_to,method_belong_to,block_number,'check_undeclared_id'))    
+                        type_idx = self.visit(ast.value.idx[i],(c,class_belong_to,method_belong_to,block_number,None,'check_type'))
+                    elif type(ast.value.idx[i]) is FieldAccess:
+                        tmp_class_refer = self.visit(ast.value.idx[i],(c,class_belong_to,method_belong_to,block_number))
+                        type_idx = self.visit(ast.value.idx[i].fieldname,(c,class_belong_to,method_belong_to,block_number,tmp_class_refer,'check_type'))
+                    elif type(ast.value.idx[i]) in [IntLiteral,FloatLiteral,BooleanLiteral,StringLiteral]:
+                        type_idx = self.visit(ast.value.idx[i],c)
+                
+                    if type(type_idx) is not IntType:
+                        raise TypeMismatchInExpression(ast.value)
+                type_value = self.visit(ast.value.arr,(c,class_belong_to,method_belong_to,block_number,None,'check_type'))
+                type_value = type_value.eleType
             elif type(mtype) is ArrayType:
                 if type(ast.value) is not ArrayLiteral:
                     raise TypeMismatchInConstant(ast)    
                 else:       ### ast value is ArrayLiteral
+                    if len(ast.value.value) > arr_size:
+                        raise TypeMismatchInStatement(ast)
                     tmp_type = None
                     tmp_type = self.visit(ast.value.value[0],c)
                     for i in ast.value.value:
@@ -763,12 +833,11 @@ class StaticChecker(BaseVisitor,Utils):
                     if type(type_LHS) is ArrayType:
                         sub_type_LHS = i.sub_type
                         arr_size_LHS = i.arr_size
-            
         elif type(ast.lhs) is FieldAccess:       # Self.x or obj.x
             class_refer = self.visit(ast.lhs,(c_class_method_block))
             self.visit(ast.lhs.fieldname, (c,class_belong_to,method_belong_to,block_number,class_refer,ast,'check_cannot_assign_to_constant'))
             for i in c:
-                if class_refer is not None:   # obj.x
+                if class_refer is not None and class_refer != class_belong_to:   # obj.x
                     if i.class_refer is not None:
                         if i.name == ast.lhs.fieldname.name and i.class_belong_to == class_refer :
                             type_LHS = i.mtype
@@ -792,29 +861,64 @@ class StaticChecker(BaseVisitor,Utils):
                         type_idl = i.mtype
                 self.visit(ast.lhs.arr, (c, Identifier(),class_belong_to,method_belong_to,block_number,'check_undeclared_id'))
                 self.visit(ast.lhs.arr, (c,class_belong_to,method_belong_to,block_number,None,ast,'check_cannot_assign_to_constant'))
-                for i in ast.lhs.idx:
-                    if type(self.visit(i,c)) is not IntType or type(type_idl) is not ArrayType :
-                        raise TypeMismatchInExpression(ast.lhs)
+                
+                if type(type_idl) is not ArrayType :
+                    raise TypeMismatchInExpression(ast.lhs)
+                
+                for i in c:
+                    if i.name == ast.lhs.arr.name and i.class_belong_to == class_belong_to and i.method_belong_to == method_belong_to and i.block_number <= block_number :
+                        for j in range(len(ast.lhs.idx)):
+                            if type(ast.lhs.idx[j]) is Id:
+                                self.visit(ast.lhs.idx[j],(c,Identifier(),class_belong_to,method_belong_to,block_number,'check_undeclared_id'))
+                                type_idx = self.visit(ast.lhs.idx[j],(c,class_belong_to,method_belong_to,block_number,None,'check_type'))
+                                if type(type_idx) is not IntType:
+                                    raise TypeMismatchInExpression(ast.lhs)
+                            elif type(ast.lhs.idx[j]) is FieldAccess:
+                                tmp_class_refer = self.visit(ast.lhs.idx[j],(c,class_belong_to,method_belong_to,block_number))
+                                type_idx = self.visit(ast.lhs.idx[j].fieldname,(c,class_belong_to,None,None,tmp_class_refer,'check_type'))
+                                if type(type_idx) is not IntType:
+                                    raise TypeMismatchInExpression(ast.lhs)
+                            elif type(ast.lhs.idx[j]) is UnaryOp or (type(ast.lhs.idx[j]) is IntLiteral and i.arr_size < ast.lhs.idx[j].value ) or ast.lhs.idx[j].value == 0:
+                                raise TypeMismatchInExpression(ast.lhs)
+                            elif type(ast.lhs.idx[j]) in [FloatLiteral,BooleanLiteral,StringLiteral]: 
+                                raise TypeMismatchInExpression(ast.lhs)
             elif type(ast.lhs.arr) is FieldAccess:
                 class_refer = self.visit(ast.lhs.arr,(c_class_method_block))
                 self.visit(ast.lhs.arr.fieldname, (c,class_belong_to,method_belong_to,block_number,class_refer,ast,'check_cannot_assign_to_constant'))
+                arr_size = -1
                 for i in c:
-                    if class_refer is not None:   # obj.x
+                    if class_refer is not None and class_refer != class_belong_to:   # obj.x
                         if i.class_refer is not None:
                             if i.name == ast.lhs.arr.fieldname.name and i.class_belong_to == class_refer and type(i.mtype) is ArrayType :
                                 type_LHS = i.sub_type
                                 type_idl = i.mtype
+                                arr_size = i.arr_size
                                 break
                     else:   # Self.x
                         if i.name == ast.lhs.arr.fieldname.name and  i.class_belong_to == class_belong_to and type(i.scope) in [Class,Global]and type(i.mtype) is ArrayType:
                             type_LHS = i.sub_type
                             type_idl = i.mtype
+                            arr_size = i.arr_size
                             break
-                for i in ast.lhs.idx:
-                    if type(self.visit(i,c)) is not IntType or type(type_idl) is not ArrayType :
+                for j in range(len(ast.lhs.idx)):
+                    if type(ast.lhs.idx[j]) is Id:
+                        self.visit(ast.lhs.idx[j],(c,Identifier(),class_belong_to,method_belong_to,block_number,'check_undeclared_id'))
+                        type_idx = self.visit(ast.lhs.idx[j],(c,class_belong_to,method_belong_to,block_number,None,'check_type'))
+                        if type(type_idx) is not IntType:
+                            raise TypeMismatchInExpression(ast.lhs)
+                    elif type(ast.lhs.idx[j]) is FieldAccess:
+                        tmp_class_refer = self.visit(ast.lhs.idx[j],(c,class_belong_to,method_belong_to,block_number))
+                        type_idx = self.visit(ast.lhs.idx[j].fieldname,(c,class_belong_to,None,None,tmp_class_refer,'check_type'))
+                        if type(type_idx) is not IntType:
+                            raise TypeMismatchInExpression(ast.lhs)
+                    elif type(ast.lhs.idx[j]) is UnaryOp or (type(ast.lhs.idx[j]) is IntLiteral and arr_size < ast.lhs.idx[j].value ) or ast.lhs.idx[j].value == 0:
                         raise TypeMismatchInExpression(ast.lhs)
+                    elif type(ast.lhs.idx[j]) in [FloatLiteral,BooleanLiteral,StringLiteral]: 
+                        raise TypeMismatchInExpression(ast.lhs)
+                        
+            if type(type_idl) is not ArrayType :
+                raise TypeMismatchInExpression(ast.lhs)
             
-        
         # print('type_LHS:  ',type(type_LHS),arr_size_LHS,sub_type_LHS)
         
         ##### Right Hand Side ######
@@ -829,7 +933,7 @@ class StaticChecker(BaseVisitor,Utils):
         elif type(ast.exp) is FieldAccess:       # Self.x or obj.x
             class_refer = self.visit(ast.exp,(c_class_method_block))
             for i in c:
-                if class_refer is not None:   # obj.x
+                if class_refer is not None and class_refer != class_belong_to:   # obj.x
                     if i.class_refer is not None:
                         if i.name == ast.exp.fieldname.name and i.class_belong_to == class_refer :
                             type_RHS = i.mtype
@@ -847,31 +951,63 @@ class StaticChecker(BaseVisitor,Utils):
         elif type(ast.exp) is ArrayCell: 
             type_idr = None
             if type(ast.exp.arr) is Id:
+                self.visit(ast.exp.arr, (c, Identifier(),class_belong_to,method_belong_to,block_number,'check_undeclared_id')) 
                 for i in c:
                     if i.name == ast.exp.arr.name and i.class_belong_to == class_belong_to and i.method_belong_to == method_belong_to and i.block_number <= block_number:
                         type_RHS = i.sub_type
                         type_idr = i.mtype
-                self.visit(ast.exp.arr, (c, Identifier(),class_belong_to,method_belong_to,block_number,'check_undeclared_id'))
-                for i in ast.exp.idx:
-                    if type(self.visit(i,c)) is not IntType or type(type_idr) is not ArrayType :
-                        raise TypeMismatchInExpression(ast.exp)
+                for i in c:
+                    if i.name == ast.exp.arr.name and i.class_belong_to == class_belong_to and i.method_belong_to == method_belong_to and i.block_number <= block_number :
+                        for j in range(len(ast.exp.idx)):
+                            if type(ast.exp.idx[j]) is Id:
+                                self.visit(ast.exp.idx[j],(c,Identifier(),class_belong_to,method_belong_to,block_number,'check_undeclared_id'))
+                                type_idx = self.visit(ast.exp.idx[j],(c,class_belong_to,method_belong_to,block_number,None,'check_type'))
+                                if type(type_idx) is not IntType:
+                                    raise TypeMismatchInExpression(ast.exp)
+                            elif type(ast.exp.idx[j]) is FieldAccess:
+                                tmp_class_refer = self.visit(ast.exp.idx[j],(c,class_belong_to,method_belong_to,block_number))
+                                type_idx = self.visit(ast.exp.idx[j].fieldname,(c,class_belong_to,None,None,tmp_class_refer,'check_type'))
+                                if type(type_idx) is not IntType:
+                                    raise TypeMismatchInExpression(ast.exp)
+                            elif type(ast.exp.idx[j]) is UnaryOp or (type(ast.exp.idx[j]) is IntLiteral and i.arr_size < ast.exp.idx[j].value )or ast.exp.idx[j].value == 0:
+                                raise TypeMismatchInExpression(ast.exp)
+                            elif type(ast.exp.idx[j]) in [FloatLiteral,BooleanLiteral,StringLiteral]: 
+                                raise TypeMismatchInExpression(ast.exp)
             elif type(ast.exp.arr) is FieldAccess:
                 class_refer = self.visit(ast.exp.arr,(c_class_method_block))
+                arr_size = -1
                 for i in c:
-                    if class_refer is not None:   # obj.x
+                    if class_refer is not None and class_refer != class_belong_to :   # obj.x  and class_refer != class_belong_to
                         if i.class_refer is not None:
                             if i.name == ast.exp.arr.fieldname.name and i.class_belong_to == class_refer and type(i.mtype) is ArrayType :
                                 type_RHS = i.sub_type
                                 type_idr = i.mtype
+                                arr_size = i.arr_size
                                 break
                     else:   # Self.x
                         if i.name == ast.exp.arr.fieldname.name and  i.class_belong_to == class_belong_to and type(i.scope) in [Class,Global]and type(i.mtype) is ArrayType:
                             type_RHS = i.sub_type
                             type_idr = i.mtype
+                            arr_size = i.arr_size
                             break
-                for i in ast.exp.idx:
-                    if type(self.visit(i,c)) is not IntType or type(type_idr) is not ArrayType :
+                for j in range(len(ast.exp.idx)):
+                    if type(ast.exp.idx[j]) is Id:
+                        self.visit(ast.exp.idx[j],(c,Identifier(),class_belong_to,method_belong_to,block_number,'check_undeclared_id'))
+                        type_idx = self.visit(ast.exp.idx[j],(c,class_belong_to,method_belong_to,block_number,None,'check_type'))
+                        if type(type_idx) is not IntType:
+                            raise TypeMismatchInExpression(ast.exp)
+                    elif type(ast.exp.idx[j]) is FieldAccess:
+                        tmp_class_refer = self.visit(ast.exp.idx[j],(c,class_belong_to,method_belong_to,block_number))
+                        type_idx = self.visit(ast.exp.idx[j].fieldname,(c,class_belong_to,None,None,tmp_class_refer,'check_type'))
+                        if type(type_idx) is not IntType:
+                            raise TypeMismatchInExpression(ast.exp)
+                    elif type(ast.exp.idx[j]) is UnaryOp or (type(ast.exp.idx[j]) is IntLiteral and arr_size < ast.exp.idx[j].value ) or ast.exp.idx[j].value == 0:
                         raise TypeMismatchInExpression(ast.exp)
+                    elif type(ast.exp.idx[j]) in [FloatLiteral,BooleanLiteral,StringLiteral]: 
+                        raise TypeMismatchInExpression(ast.exp)
+                        
+            if type(type_idr) is not ArrayType :
+                raise TypeMismatchInExpression(ast.exp)
         elif type(ast.exp) in [BinaryOp, UnaryOp]:
             type_RHS = self.visit(ast.exp,c_class_method_block)   
         elif type(ast.exp) in [IntLiteral,FloatLiteral,BooleanLiteral,StringLiteral]:
@@ -1143,6 +1279,29 @@ class StaticChecker(BaseVisitor,Utils):
                     for  i in c :
                         if i.name == j.name and i.class_belong_to == class_belong_to and i.method_belong_to == method_belong_to and i.block_number <= block_number:
                             l_type_param.append(i.mtype)
+                elif type(j) is FieldAccess:
+                    tmp_class_refer,ret_type = self.visit(j,(c,class_belong_to,method_belong_to,block_number))
+                    l_type_param.append(self.visit(j.fieldname,(c,class_belong_to,None,None,tmp_class_refer,'check_type')))
+                elif type(j) is ArrayCell:
+                    self.visit(j.arr,(c,Identifier(),class_belong_to,method_belong_to,block_number,'check_undeclared_id'))
+                    for i in c:
+                        if i.name == j.arr.name and i.class_belong_to == class_belong_to and i.method_belong_to == method_belong_to and i.block_number <= block_number :
+                            for k in range(len(j.idx)):
+                                type_idx = None
+                                if type(j.idx[k]) is Id:
+                                    self.visit(j.idx[k],(c,Identifier(),class_belong_to,method_belong_to,block_number,'check_undeclared_id'))
+                                    type_idx = (self.visit(j.idx[k],(c,class_belong_to,method_belong_to,block_number,None,'check_type')))
+                                elif type(j.idx[k]) is FieldAccess:
+                                    tmp_class_refer,ret_type = self.visit(j.idx[k],(c,class_belong_to,method_belong_to,block_number))
+                                    type_idx = self.visit(j.idx[k].fieldname,(c,class_belong_to,None,None,tmp_class_refer,'check_type'))     
+                                elif type(j.idx[k]) is UnaryOp or (type(j.idx[k]) is IntLiteral and i.arr_size < j.idx[k].value ) or j.idx[k].value == 0: 
+                                    raise TypeMismatchInExpression(j)
+                                elif type(j.idx[k]) in [IntLiteral,FloatLiteral,BooleanLiteral,StringLiteral]: 
+                                    type_idx = self.visit(j.idx[k],c)
+                                if type(type_idx) is not IntType:
+                                    raise TypeMismatchInExpression(j)
+                            l_type_param.append(i.sub_type)
+                            break 
                 elif type(j) in [IntLiteral,FloatLiteral,BooleanLiteral,StringLiteral]: 
                     l_type_param.append(self.visit(j,c))
         leng = 0
@@ -1158,9 +1317,9 @@ class StaticChecker(BaseVisitor,Utils):
                 if (type(l_type_param[i]) != type(param_list[i][1])):
                     if type(param_list[i][1]) is FloatType and   type(l_type_param[i]) is IntType:
                         xyz = 27
-                    else:
+                    else:            
                         raise TypeMismatchInStatement(ast)
-
+        self.call_flag = False
         return
 
     def visitReturn(self,ast:Return, c_class_method_block): 
@@ -1180,7 +1339,7 @@ class StaticChecker(BaseVisitor,Utils):
         elif type(ast.expr) is FieldAccess:
             class_refer = self.visit(ast.expr,(c_class_method_block))
             for i in c:
-                if class_refer is not None:   # obj.x
+                if class_refer is not None and class_refer != class_belong_to:   # obj.x
                     if i.class_refer is not None:
                         if i.name == ast.expr.fieldname.name and i.class_belong_to == class_refer :
                             ret_type = i.mtype
@@ -1207,7 +1366,7 @@ class StaticChecker(BaseVisitor,Utils):
             elif type(ast.expr.arr) is FieldAccess:
                 class_refer = self.visit(ast.expr.arr,(c_class_method_block))
                 for i in c:
-                    if class_refer is not None:   # obj.x
+                    if class_refer is not None and class_refer != class_belong_to:   # obj.x
                         if i.class_refer is not None:
                             if i.name == ast.expr.arr.fieldname.name and i.class_belong_to == class_refer and type(i.mtype) is ArrayType :
                                 ret_type = i.sub_type
@@ -1281,8 +1440,32 @@ class StaticChecker(BaseVisitor,Utils):
                     for  i in c :
                         if i.name == j.name and i.class_belong_to == class_belong_to and i.method_belong_to == method_belong_to and i.block_number <= block_number:
                             l_type_param.append(i.mtype)
+                elif type(j) is FieldAccess:
+                    tmp_class_refer= self.visit(j,(c,class_belong_to,method_belong_to,block_number))
+                    l_type_param.append(self.visit(j.fieldname,(c,class_belong_to,None,None,tmp_class_refer,'check_type')))   
+                elif type(j) is ArrayCell:
+                    self.visit(j.arr,(c,Identifier(),class_belong_to,method_belong_to,block_number,'check_undeclared_id'))
+                    for i in c:
+                        if i.name == j.arr.name and i.class_belong_to == class_belong_to and i.method_belong_to == method_belong_to and i.block_number <= block_number :
+                            for k in range(len(j.idx)):
+                                type_idx = None
+                                if type(j.idx[k]) is Id:
+                                    self.visit(j.idx[k],(c,Identifier(),class_belong_to,method_belong_to,block_number,'check_undeclared_id'))
+                                    type_idx = self.visit(j.idx[k],(c,class_belong_to,method_belong_to,block_number,None,'check_type'))
+                                elif type(j.idx[k]) is FieldAccess:
+                                    tmp_class_refer = self.visit(j.idx[k],(c,class_belong_to,method_belong_to,block_number))
+                                    type_idx = self.visit(j.idx[k].fieldname,(c,class_belong_to,None,None,tmp_class_refer,'check_type'))
+                                elif type(j.idx[k]) is UnaryOp or (type(j.idx[k]) is IntLiteral and i.arr_size < j.idx[k].value ) or j.idx[k].value == 0:
+                                    raise TypeMismatchInExpression(j)
+                                elif type(j.idx[k]) in [IntLiteral,FloatLiteral,BooleanLiteral,StringLiteral]: 
+                                    type_idx = self.visit(j.idx[k],c)
+                                if type(type_idx) is not IntType:
+                                    raise TypeMismatchInExpression(j)
+                            l_type_param.append(i.sub_type)
+                            break
                 elif type(j) in [IntLiteral,FloatLiteral,BooleanLiteral,StringLiteral]: 
                     l_type_param.append(self.visit(j,c))
+
         leng = 0
         if len(param_list) != len(l_type_param) :
             raise TypeMismatchInExpression(ast)
@@ -1298,7 +1481,7 @@ class StaticChecker(BaseVisitor,Utils):
                         xyz = 27
                     else:
                         raise TypeMismatchInExpression(ast)
-
+        
         if type(ret_type) is VoidType:
             raise TypeMismatchInExpression(ast) 
         return ret_type

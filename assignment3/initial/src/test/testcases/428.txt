@@ -1,6 +1,6 @@
 
         Class c1{
-            Val x:Array[Int, 1]= Array(7,2);
+            Val x:Array[Int, 3]= Array(7,2);
         }
         Class c2{
             m(){  
